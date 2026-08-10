@@ -1,0 +1,11 @@
+# Fabrication Toolkit / KiCad 出力 (再生成可能な成果物)
+production/
+*.kicad_prl
+*-backups/
+*.kicad_sch-bak
+*.kicad_pcb-bak
+fp-info-cache
+
+# OS / editor
+.DS_Store
+*.rpt
