@@ -339,9 +339,61 @@ await eda.sch_PrimitiveComponent.create(devs[0], x, y);                   // そ
 `C2832094` (IP2326) / `C15051` (MP1584EN-LF-Z) / `C8545` (2N7002) / `C20526` (MMBT3904) /
 `C85202` (BSS84-7-F) / `C123800` (SMF12A) / `C2286` (KT-0603R) / `C8678` (SS34)
 
+### 書き込み系 API の実測 (2026-08-11、create/delete 往復を検証済み)
+
+**1 部品で create → 読み戻し → delete を往復させ、部品数が 73/45 に戻ることを確認した。**
+
+| 項目 | 実測結果 |
+| --- | --- |
+| `sch_PrimitiveComponent.create(dev, x, y)` | 成功。戻り値から `SupplierId` / `ManufacturerId` / `ComponentType='part'` が読める |
+| ⚠️ **Designator** | **`Q?` のまま。自動採番されない** → `modify()` で明示的に設定する |
+| `Name` | `={Manufacturer Part}` のまま (2P 版の既存部品と同じ書式) |
+| `delete(primitiveId)` | `true` を返し、`getAll()` から消える |
+| **部品の Y 座標** | **テキストと同じ正の座標系**。矩形だけが反転する (§2) |
+
+#### Designator と値の設定は `modify()`
+
+```javascript
+const dev = (await eda.lib_Device.getByLcscIds(['C8545']))[0];
+const q = await eda.sch_PrimitiveComponent.create(dev, x, y, undefined, rotation);
+await eda.sch_PrimitiveComponent.modify(q.getState_PrimitiveId(), { designator: 'Q1' });
+```
+
+`modify(primitiveId, property)` の property は
+`{x, y, rotation, mirror, addIntoBom, addIntoPcb, designator, name, uniqueId, manufacturer, manufacturerId, supplier, supplierId, otherProperty}`。
+
+#### ピン座標は `getAllPinsByPrimitiveId()` で**絶対座標**が取れる
+
+配線に必須。戻り値の各ピンから `getState_PinNumber / PinName / X / Y / Rotation / PinLength` が読める。
+
+```javascript
+const pins = await eda.sch_PrimitiveComponent.getAllPinsByPrimitiveId(primitiveId);
+```
+
+実測例 (2P 版 U1 = MAX16054、配置 (300,700)):
+`IN (250,710) / GND (250,700) / CLEAR (250,690) / #OUT (350,690) / OUT (350,700) / VCC (350,710)`
+— **シンボル幅 100 units、ピンピッチ 10 units**。左側ピンは `rotation 180`、右側は `0`。
+
+2N7002 (SOT-23、配置 (1120,810)) は `G (1100,810) rot180 / D (1130,830) rot90 / S (1130,790) rot270`。
+
+#### 配線は `sch_PrimitiveWire.create(line, net)`
+
+`line` は座標の平坦な配列 (`[x1,y1,x2,y2,…]`) または点の配列。`net` でネット名を与える。
+既存ワイヤの `getState_Line()` も同じ平坦配列で返る (例: `[71,435,80,435,95,435,80,435]`)。
+
 ### NET_PORT (グローバルラベル) の作り方
 
-NET_PORT は**専用 API ではなくコンポーネント配置**で作る。2P 版で使われているシンボル (実測):
+⚠️ **2026-08-11 訂正: 専用 API `createNetPort()` が存在する。**
+
+```javascript
+await eda.sch_PrimitiveComponent.createNetPort(direction, net, x, y, rotation?, mirror?);
+// direction は 'IN' | 'OUT' | 'BI'
+```
+
+2P 版は 27 個すべて `Netport-IN` シンボルなので、**`direction: 'IN'` を使えば見た目が揃うと考えられる**
+(未検証 — 最初の 1 個を作った時点で `getState_Component()` を読んで下表の uuid と一致するか確認する)。
+
+一致しない場合は下記のコンポーネント配置方式にフォールバックする。2P 版で使われているシンボル (実測):
 
 | 項目 | 値 |
 | --- | --- |
