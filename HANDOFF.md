@@ -23,7 +23,10 @@ warnings が「回路図ページではありません」だけなら正常。
   - アカウント `tajmahal.jp` (customerCode `2653466A`)、Personal team uuid `65ba7c60a1884bee825c356aebdc2ef7`
   - 複製元 2P 版 `isolation-sphere-power` = project uuid `9ead87f316b44e3b8a20dddd6de44752`
   - 同アカウントの他プロジェクト: `Isolation-sphere-BMS` / `isolation-sphere-core40` / `WS2812-square` / `WS2813-square`
-  - **`power-2s-02` プロジェクトは未作成**
+- [x] **EasyEDA プロジェクト `power-2S-02` を作成** (2026-08-10) — 2P 版を GUI「名前を付けて保存」で複製
+  - project uuid **`12e4820a5a9c49509b15e944859df944`** / 回路図 P1 `1c498cb2e140475c` / PCB1 `864de495483a0562`
+  - 複製直後の内容: 部品 73 / 配線 76 / 枠 4 — [`docs/07`](docs/07-easyeda-schematic-rules.md) §1 の実測記録と一致
+  - 複製元 `isolation-sphere-power` は無傷。**中身の改変はまだ一切していない** (TP4056/TPS61088/MAX16054 が残存)
 
 ## 次のアクション (優先順)
 
@@ -32,8 +35,11 @@ warnings が「回路図ページではありません」だけなら正常。
    - [ ] IP2326: パッケージ・ピン配置・標準回路・セル数/ISET 設定 → [`docs/02`](docs/02-ip2326-module.md) §2 の全項目
    - [ ] MP1584EN: ピン配置・FB 基準電圧 (→ 固定 5V 分圧)・**EN ピン仕様**・FREQ/COMP/BST → [`docs/03`](docs/03-mp1584-module.md) §2
 3. **ディスクリートラッチ回路の確定** — リファレンス回路の選定と定数設計 ([`docs/06`](docs/06-power-switch.md) Q2)。EN 仕様の確認が前提
-4. **EasyEDA で 2P 版を複製** → CHARGE / DCDC / PMIC ブロックを差し替え ([`docs/07`](docs/07-easyeda-schematic-rules.md) §5)
+4. ~~EasyEDA で 2P 版を複製~~ **(完了)** → **CHARGE / DCDC / PMIC ブロックを差し替え** ([`docs/07`](docs/07-easyeda-schematic-rules.md) §5 の手順 2 以降)
    - 作図規約 (モジュール枠 / NET_PORT / GND 例外 / 座標単位 0.01 inch) は [`docs/07`](docs/07-easyeda-schematic-rules.md) を厳守
+   - **書き込み系 API を呼ぶ前に `getCurrentProjectInfo().uuid === "12e4820a…"` を必ず照合する。**
+     回路図/PCB の document uuid が複製元と同一なので、照合を省くと 2P 版を壊す ([`docs/07`](docs/07-easyeda-schematic-rules.md) §3 落とし穴 ④)
+   - [ ] project description を 2S 版の内容に書き換える (GUI。変更 API が無い)
 5. **部品選定** — 全部品に LCSC 番号を設定 ([`docs/05`](docs/05-jlcpcb-fab.md) §2 の実績番号を初期値に使える)
 6. **レイアウト** — 40×40 / 4 層 / 四隅 M2 / 片面実装 ([`docs/04`](docs/04-layout-thermal.md))
 7. **ERC/DRC → JLCPCB 直発注** ([`docs/05`](docs/05-jlcpcb-fab.md))

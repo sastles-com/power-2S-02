@@ -44,6 +44,20 @@ Claude が作図する際の**API 制約**。
 | ワイヤ総数 | 76 (ネット 24 種) |
 | 部品 | 45 (`part`) + シート 1 |
 | 注釈文字 | fontSize 10 (太字) でブロック仕様を記載。例: `[5] Boost 5V/3A - TPS61088 (L=1uH, ILIM 11.9A)` |
+| `getAll()` の部品総数 | **73** = part 45 + NET_PORT 27 + タイトルブロックシンボル 1 |
+
+**主要 IC の実測 (BOM を `sch_ManufactureData.getBomFile()` で吐かせて確認、2026-08-10)。**
+CLAUDE.md §7 の対比表が正しいことをここで裏取り済み — **project description は信用しない**
+(2P 版の description には IP2326 / MP1584EN / HY2120 と書かれているが、実装されていない):
+
+| Des | 実部品 | LCSC | 2S 版での扱い |
+| --- | --- | --- | --- |
+| U1 | MAX16054AZT+T | C79401 | **廃止** (ディスクリートラッチへ、[`docs/06`](06-power-switch.md)) |
+| U2 | TP4056 (1S リニア充電) | C9900002169 | **差し替え** → IP2326 |
+| U3 | TPS61088RHLR (昇圧) | C87357 | **差し替え** → MP1584 (降圧) |
+| Q1, Q2 | SSM6J808R,LF (P-FET) | C20247098 | 直列 FET 方式廃止に伴い見直し |
+| D1 | SS34 | C8678 | 流用可 |
+| L1 | SWPA8040S1R0NT 1 µH | C96968 | MP1584 用の値を再計算 |
 
 枠とタイトルの実測座標 (単位 0.01 inch):
 
@@ -170,6 +184,22 @@ const info  = await eda.dmt_Project.getProjectInfo(uuids[0]);
 - 本アカウントの Personal team uuid = **`65ba7c60a1884bee825c356aebdc2ef7`** (ユーザー uuid と同値)。
 - 複製元 2P 版 `isolation-sphere-power` の project uuid = **`9ead87f316b44e3b8a20dddd6de44752`** (§7 のリンク `id=` と一致)。
 
+**④ document uuid はプロジェクト間で一意ではない。** GUI の「名前を付けて保存」で複製すると、
+回路図ページ / PCB の uuid が**複製元と同一のまま**新プロジェクトにコピーされる (2026-08-10 実測):
+
+| | project uuid | 回路図 P1 | PCB1 |
+| --- | --- | --- | --- |
+| 複製元 `isolation-sphere-power` | `9ead87f316b44e3b8a20dddd6de44752` | `1c498cb2e140475c` | `864de495483a0562` |
+| 複製先 `power-2S-02` | `12e4820a5a9c49509b15e944859df944` | **`1c498cb2e140475c`** | **`864de495483a0562`** |
+
+一意なのは tabId (`<documentUuid>@<projectUuid>`) だけ。
+**`dmt_EditorControl.openDocument(documentUuid)` の直後に `dmt_Project.getCurrentProjectInfo()` で
+project uuid を照合し、期待したプロジェクトであることを確認してから書き込み系 API を呼ぶこと。**
+照合を省くと 2P 版 (複製元) を破壊する事故が起きる。
+
+**⑤ プロジェクトの description を変更する API は無い** (`dmt_Project` は create / get / move / open のみ。
+`dmt_Folder.modifyFolderDescription` はフォルダ専用)。GUI のプロジェクトプロパティで直す。
+
 > **繰り返す操作は skill にする** — 以下の定型手順は毎回書き直さず、CLAUDE.md §6.1 の方針に従って
 > `.claude/skills/` に skill 化する。特に座標単位・Y 符号・シンボル UUID を埋め込んだ skill を作れば、
 > 本ファイルの制約を人間/AI が読み落としても事故らない。
@@ -264,7 +294,23 @@ BOM/発注に直結するため、部品配置時に以下を埋める (2P 版�
 
 本プロジェクトは **2P 版プロジェクトを複製して 2S 版に改造**する方針 (2026-08-10 決定)。
 
-1. EasyEDA Pro 上で `isolation-sphere-power` を複製し、名前を `power-2S-02` 等に変更
+1. ~~EasyEDA Pro 上で `isolation-sphere-power` を複製し、名前を `power-2S-02` 等に変更~~
+   → **2026-08-10 完了**。GUI の「名前を付けて保存」で複製した (API に複製手段は無い。
+   `sys_FileManager.getProjectFileByProjectUuid` + `importProjectByProjectFile` は beta かつ
+   インポート経路でライブラリ参照が張り替わる恐れがあるため採用しなかった)。
+
+   | | 値 |
+   | --- | --- |
+   | プロジェクト名 | **`power-2S-02`** |
+   | project uuid | **`12e4820a5a9c49509b15e944859df944`** |
+   | 回路図ページ P1 | `1c498cb2e140475c` (複製元と同一 uuid — §3 落とし穴 ④) |
+   | PCB1 | `864de495483a0562` (同上) |
+   | 複製直後の内容 | 部品 73 / 配線 76 / 矩形 4 (= §1 の枠 4 個と一致) |
+
+   **複製元 `isolation-sphere-power` は無傷であることを確認済み** (Save As がリネームとして働いていない)。
+   なお複製で引き継がれた project description は 2P 版由来で実態と合っていない
+   (IP2326 / MP1584EN / HY2120 と書かれているが、実装は TP4056 / TPS61088 / MAX16054)。
+   GUI で書き換える (§3 落とし穴 ⑤)。
 2. **流用するブロック**: `connector` (構成は変更)、`PMIC` (方式変更 → [`docs/06`](06-power-switch.md))、枠・NET_PORT・注釈の書式
 3. **差し替えるブロック**:
    - `CHARGE`: TP4056 (1S リニア) → **IP2326 (2S 昇圧充電)**
