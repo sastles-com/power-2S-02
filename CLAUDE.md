@@ -3,11 +3,16 @@
 このファイルは Claude が本プロジェクトで作業する際に**最初に読むべき前提知識**です。
 作業状態・次のアクションは [`HANDOFF.md`](HANDOFF.md) を参照すること。
 
-- 親プロジェクト: Isolation Sphere V2 (`/Users/katano/work/FPC-isolation-sphere/CLAUDE.md`)
+- 親プロジェクト: **Isolation Sphere V2** — リポジトリ `sastles-com/FPC-isolation-sphere` の `CLAUDE.md`
   - 本基板は親プロジェクトの「充電 IC は別プロジェクト管轄」に当たる電源サブシステム。
   - 親 CLAUDE.md の規約 (commit 運用、質問優先の原則) は本プロジェクトにも適用される。
-- **リポジトリ二重管理**: 本フォルダはモノレポ `FPC-isolation-sphere/kiban/resized/power-2s-02/` と
+- **リポジトリ二重管理**: 本フォルダはモノレポ (`FPC-isolation-sphere/kiban/resized/power-2s-02/`) と
   単独リポジトリ **`https://github.com/sastles-com/power-2S-02.git`** の両方にある。同期手順は §5 参照。
+
+> **⚠️ パスについて**: 本ドキュメント群は**どの PC でも通用するよう絶対パスを書かない**方針。
+> 作業機が変わる前提なので、パスは常に**リポジトリルートからの相対パス**で書くこと。
+> 親リポジトリ内のファイルを参照する場合は「親リポジトリの `docs/...`」と明記する
+> (単独リポジトリだけをクローンした環境では親リポジトリが存在しない場合がある)。
 
 ---
 
@@ -37,7 +42,8 @@
 | 充電入力 | **コネクタ入力のみ** (南極 磁気端子 → AWG26×2 → 本基板)。**Type-C レセプタクルは載せない** |
 | 充電回路 | IP2326 で 2S (8.4 V) へ昇圧充電、~15 W 級 |
 | 5V 出力 | MP1584 降圧、**固定 5V / 設計最大 3 A**。親方針「全白禁止 + 輝度上限運用」が前提 ([§9](#9-known-constraints--既知の制約)) |
-| 電源 ON/OFF | **ディスクリートラッチ + EN 制御**。付帯要件: **ESP32 からのソフト電源断** + **電源状態 LED**。強制オフ (CLR) 端子は設けない |
+| 電源 ON/OFF | **ディスクリートラッチ + EN 制御**。付帯要件: **電源状態 LED** のみ。強制オフ (CLR) 端子は設けない。**ESP32 ソフト電源断は一旦ペンディング** (2026-08-10、将来追加できるようパッドのみ予約) |
+| 電源ヘッダの配置 | **CN5 (VOUT 6p) と CN6 (VIN 6p) は基板の左右端・同一 Y・対向配置** (2P 版踏襲、[`docs/04`](docs/04-layout-thermal.md) §3.1) |
 | 保護 | XR-2S-30A オフボード (B+/BM/B−/P+/P− の 5 線)。**IP2326 の保護機能に依存しない** |
 | コネクタ | **最小構成に削減** (充電入力 / セル×2 / BMS 戻り / 5V 出力 の 4〜5 個)。デバッグ口はテストポイントで代用 |
 | 回路定数の根拠 | **データシート標準回路 + 自前計算**。既製モジュール実物の定数実測は行わない |
@@ -60,6 +66,8 @@
 - **ALWAYS** 全実装部品に **LCSC 番号 (Supplier ID)** を設定する。空欄の部品を残さない。
 - **ALWAYS** 回路図は [`docs/07`](docs/07-easyeda-schematic-rules.md) の作図規約に従う (モジュールを四角でくくる / モジュール内は直接配線 / モジュール間は NET_PORT / GND は例外)。
 - **ALWAYS** 未確定事項は勝手に決めず質問する (親プロジェクト共通ルール)。
+- **ALWAYS** ドキュメントに**絶対パスを書かない** (作業機が変わる前提。リポジトリルート相対で書く)。
+- **ALWAYS** 繰り返す操作は **skill 化する** — 特に EasyEDA 操作。詳細は [§6.1](#61-skill-の作成方針--proactively-build-skills)。
 </hard_rules>
 
 ## 4. Docs Index / ドキュメント索引
@@ -78,11 +86,13 @@
 ## 5. Repository Layout / フォルダ構成と同期
 
 ```text
-power-2s-02/
+power-2s-02/            ← 単独リポジトリではここがルート
 ├── CLAUDE.md                  このファイル (前提知識・確定仕様・規約)
 ├── HANDOFF.md                 作業状態・次アクション (セッション跨ぎの引き継ぎ)
 ├── .gitignore                 production/ 等の除外
-├── .claude/settings.json      権限設定 (additionalDirectories はモノレポ前提)
+├── .claude/
+│   ├── settings.json          権限設定 (絶対パスを含めない)
+│   └── skills/                プロジェクト固有 skill (§6.1)
 ├── docs/                      設計仕様書 (上の索引参照)
 └── legacy/                    旧版 power-2S (KiCad 10) — **参照専用、編集禁止**
     ├── power-2S.kicad_sch     ネット構成の一次資料
@@ -90,20 +100,32 @@ power-2s-02/
 ```
 
 **設計データ本体は EasyEDA Pro のクラウド上にある** (本リポジトリには回路図/PCB ファイルを置かない)。
-リポジトリは仕様書と legacy 参照資料の管理に使う。
+リポジトリは仕様書・skill・legacy 参照資料の管理に使う。
+このため **PC が変わっても単独リポジトリをクローンすれば作業を継続できる**
+(EasyEDA Pro と `easyeda-api` skill がその PC にインストールされていることが前提)。
 
-### 単独リポジトリへの同期
-
-モノレポ側で更新したら、単独リポジトリ (`sastles-com/power-2S-02`) へ以下で同期する:
+### 別 PC で作業する場合
 
 ```bash
-cd /Users/katano/work/FPC-isolation-sphere
+git clone https://github.com/sastles-com/power-2S-02.git
+# → CLAUDE.md と HANDOFF.md を読んでから着手
+```
+
+親リポジトリ (`FPC-isolation-sphere`) が無い環境では、親 docs への参照は解決できない。
+必要な親側の情報は本リポジトリ内に転記済み (CLAUDE.md §9 など)。
+
+### 単独リポジトリへの同期 (モノレポ側で作業した場合)
+
+```bash
+# <monorepo> = FPC-isolation-sphere のクローン先
+cd <monorepo>
 git subtree split --prefix=kiban/resized/power-2s-02 -b power-2s-02-export
 git push https://github.com/sastles-com/power-2S-02.git power-2s-02-export:main
 git branch -D power-2s-02-export
 ```
 
-⚠️ 単独リポジトリ側で直接編集すると履歴が分岐する。**編集はモノレポ側を正本とする。**
+⚠️ **両方で編集すると履歴が分岐する。** どちらか一方を作業機ごとの正本と決めて運用すること
+(モノレポ側で編集 → 上記で同期、または単独リポジトリ側で編集 → モノレポへ `git subtree pull`)。
 
 ## 6. Workflow / 開発ワークフロー
 
@@ -115,6 +137,27 @@ git branch -D power-2s-02-export
 5. **検証**: ERC / DRC クリーン + 電流容量計算 + 3D で干渉確認
 6. **発注**: EasyEDA から JLCPCB へ直発注 ([`docs/05`](docs/05-jlcpcb-fab.md))
 7. **コミット**: 仕様書の更新は作業単位ごとに commit & push、単独リポジトリへも同期 (§5)
+
+### 6.1 Skill の作成方針 / Proactively build skills
+
+**同じ操作を 2 回以上繰り返しそうなら、その場で skill を作る** (`skill-creator` skill を使う)。
+特に **EasyEDA 操作は積極的に skill 化する** — ブリッジ経由の API 呼び出しは定型コードが長く、
+毎回書き直すと事故 (座標単位の間違い、`await` 忘れ、enum の取り違え) が起きやすい。
+
+skill 化の候補 (着手時に必要になった順で作る):
+
+| 候補 | 内容 |
+| --- | --- |
+| `eda-connect` | ブリッジ稼働確認 → ウィンドウ選択 → プロジェクト/ドキュメント状態の確認までを 1 コマンドで |
+| `eda-schematic-dump` | 回路図の全部品・ネット・NET_PORT・枠を構造化して吐き出す (レビュー/差分確認用) |
+| `eda-module-box` | モジュール枠 (矩形 + タイトル文字) を規約どおりの書式で作成 ([`docs/07`](docs/07-easyeda-schematic-rules.md) §1) |
+| `eda-netport` | NET_PORT を規約のシンボルで配置 ([`docs/07`](docs/07-easyeda-schematic-rules.md) §3) |
+| `eda-bom-check` | 全部品の LCSC 番号 (Supplier ID) 欠落チェック ([`docs/05`](docs/05-jlcpcb-fab.md) §2) |
+| `eda-drc-report` | ERC/DRC を実行して結果を要約 |
+
+- 置き場所: 本リポジトリの `.claude/skills/<name>/SKILL.md` (プロジェクト固有として commit する)
+- **skill には座標単位・符号規約・シンボル UUID を埋め込む** ([`docs/07`](docs/07-easyeda-schematic-rules.md) の内容を実行可能な形にする)
+- 汎用的すぎて他プロジェクトでも使えるものは、ユーザーに確認してから**ユーザーレベルの skill ディレクトリ**へ置く
 
 ## 7. References / 参考資料
 
@@ -132,7 +175,8 @@ git branch -D power-2s-02-export
   - **流用してよい**: 作図スタイル (枠・NET_PORT・注釈書式)、コネクタ/テストポイントの流儀、受動部品・SS34 等の LCSC 実績番号
   - **流用してはいけない**: 充電段 (TP4056)・昇圧段 (TPS61088)・MAX16054 直列 FET 方式
 - legacy 解析の一次資料: `legacy/power-2S.kicad_sch` / `.kicad_pcb`
-- 親プロジェクト: `/Users/katano/work/FPC-isolation-sphere/CLAUDE.md` (§2.6 給電・§2.7 BOM・docs/03-power-charging.md)
+- 親プロジェクト: 親リポジトリの `CLAUDE.md` (§2.6 給電・§2.7 BOM) と `docs/03-power-charging.md`
+- `easyeda-api` skill (API リファレンス + ブリッジ) — 作業 PC にインストール済みであること
 
 ## 8. Open Questions / 未確定事項
 

@@ -72,6 +72,18 @@ Claude が作図する際の**API 制約**。
 
 ## 3. API 実行の制約 (ブリッジ経由)
 
+### 作業 PC の前提
+
+- **EasyEDA Pro** がインストール・ログイン済み
+- **`easyeda-api` skill** がその PC に導入済み (API リファレンス + ブリッジサーバを含む)
+- EasyEDA Pro 側に **`run-api-gateway.eext` 拡張**が導入済み (<https://jlc-ext.com/item/oshwhub/run-api-gateway>)
+
+**この 3 つが揃っていない PC では作図できない。** 別 PC で作業を始める前に確認すること。
+
+> **繰り返す操作は skill にする** — 以下の定型手順は毎回書き直さず、CLAUDE.md §6.1 の方針に従って
+> `.claude/skills/` に skill 化する。特に座標単位・Y 符号・シンボル UUID を埋め込んだ skill を作れば、
+> 本ファイルの制約を人間/AI が読み落としても事故らない。
+
 ### 前提の確認手順 (毎回)
 
 ```bash
@@ -177,6 +189,7 @@ BOM/発注に直結するため、部品配置時に以下を埋める (2P 版�
 
 ## References
 
-- `easyeda-api` skill: `~/.claude/skills/easyeda-api/references/classes/SCH_*.md`
-- ドキュメントソース形式: 同 skill `format/schematic/`
+- `easyeda-api` skill (作業 PC の skill ディレクトリ内): `references/classes/SCH_*.md` に全 API シグネチャ
+- ドキュメントソース形式: 同 skill の `format/schematic/`
 - 2P 版プロジェクト: CLAUDE.md §7 のリンク
+- 本プロジェクト用 skill の作成方針: CLAUDE.md §6.1

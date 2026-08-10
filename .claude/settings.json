@@ -1,19 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli sch *)",
-      "Bash(git commit -m ' *)",
-      "Bash(curl -s http://localhost:49620/eda-windows)",
-      "Bash(curl -s -X POST http://localhost:49620/execute -H \"Content-Type: application/json\" -d '{\"code\": \"const p = await eda.dmt_Project.getCurrentProjectInfo\\(\\); const doc = await eda.dmt_SelectControl.getCurrentDocumentInfo\\(\\); return {project: p, currentDoc: doc};\"}')",
-      "Bash(curl -s -X POST http://localhost:49620/execute -H \"Content-Type: application/json\" -d '{\"code\": \"const comps = await eda.sch_PrimitiveComponent.getAll\\(\\); return \\(comps||[]\\).map\\(c => \\({designator: c.getState_Designator ? c.getState_Designator\\(\\) : c.designator, name: c.getState_Name ? c.getState_Name\\(\\) : c.name}\\)\\);\"}')",
-      "Bash(curl -s -X POST http://localhost:49620/execute -H \"Content-Type: application/json\" -d '{\"code\": \"const comps = await eda.sch_PrimitiveComponent.getAll\\(\\); const c = comps.find\\(x => x.getState_Designator && x.getState_Designator\\(\\) === \\\\\"U1\\\\\"\\); const proto = Object.getPrototypeOf\\(c\\); return Object.getOwnPropertyNames\\(proto\\).filter\\(n => n.startsWith\\(\\\\\"getState\\\\\"\\)\\);\"}')",
-      "Bash(curl -s -X POST http://localhost:49620/execute -H \"Content-Type: application/json\" -d '{\"code\": \"const comps = await eda.sch_PrimitiveComponent.getAll\\(\\); const rows = []; for \\(const c of comps\\) { if \\(!c.getState_Designator || !c.getState_Designator\\(\\)\\) continue; rows.push\\({ref: c.getState_Designator\\(\\), value: c.getState_Name\\(\\), mpn: c.getState_ManufacturerId ? c.getState_ManufacturerId\\(\\) : null, supplier: c.getState_SupplierId ? c.getState_SupplierId\\(\\) : null, fp: c.getState_Footprint ? \\(c.getState_Footprint\\(\\)||{}\\).name || c.getState_Footprint\\(\\) : null}\\); } return rows;\"}')",
-      "Bash(python3 -c ' *)",
+      "Bash(curl -s http://localhost:4962*)",
+      "Bash(curl -s --max-time * http://localhost:4962*)",
+      "Bash(curl -s -X POST http://localhost:4962*)",
       "Bash(git subtree *)",
-      "Bash(echo \"--- exit: $? \\(0=found\\) ---\")"
-    ],
-    "additionalDirectories": [
-      "/Users/katano/work/FPC-isolation-sphere"
+      "Bash(python3 -c *)",
+      "Bash(python3 -m json.tool)"
     ]
   }
 }
