@@ -69,14 +69,44 @@ CLAUDE.md §7 の対比表が正しいことをここで裏取り済み — **pr
 | D1 | SS34 | C8678 | 流用可 |
 | L1 | SWPA8040S1R0NT 1 µH | C96968 | MP1584 用の値を再計算 |
 
-枠とタイトルの実測座標 (単位 0.01 inch):
+枠のスタイル (2026-08-11 実測、全 4 枠共通):
+**破線** (`lineWidth 1` / `lineType 1 = DASHED`) / 色 `#AA00AA` / 塗りなし (`fillColor: null`, `fillStyle: null`) /
+`cornerRadius 0` / `rotation 0`。
+タイトル文字は `fontSize 19.68503937007874` / `bold・italic・color・fontName すべて null` /
+**`alignMode 2 = LEFT_MIDDLE`** / `rotation 0`。**タイトルの y は枠の上辺と同値**にする。
 
-| ブロック | 矩形 (topLeftX, topLeftY, w, h) | タイトル文字 (x, y) |
+#### 枠の座標 (2026-08-11 に PMIC / CHARGE を再配置した)
+
+`create()` 換算 (= 上辺の Y。§2 のとおり `getAll()` の `topLeftY` は符号が逆になる):
+
+| ブロック | X 範囲 | Y 範囲 (下..上) | `create(x, topY, w, h)` | 面積 | 収容部品数 |
+| --- | --- | --- | --- | --- | --- |
+| **PMIC** (ラッチ) | 35..510 | 430..785 | `create(35, 785, 475, 355)` | 168,625 | 21 |
+| **CHARGE** (IP2326) | 35..510 | 30..400 | `create(35, 400, 475, 370)` | 175,750 | 18 |
+| DCDC (MP1584) | 520..1055 | 200..545 | `create(520, 545, 535, 345)` | 184,575 | 17 |
+| connector | 795..1045 | 620..760 | `create(795, 760, 250, 140)` | 35,000 | CN5/CN6 |
+
+タイトル文字: `PMIC (35, 785)` / `CHARGE (50, 400)` / `DCDC (530, 545)` / `connector (800, 760)`。
+
+**再配置の理由**: 2P 版の PMIC 枠 (665×210) では新ラッチ 21 部品に対して密度が高すぎ、
+CHARGE 枠 (445×175 = 4 枠で最小) は IP2326 の 18 部品に対して**明確に足りなかった**。
+シート上の空き領域は**左下 (X 35..480, Y 0..370) だけ**だったので、
+**左側を上下 2 段の縦長ブロックに再分割**した。DCDC と connector は動かしていない。
+
+⚠️ **下方向への単純な拡張はできない**: 旧 PMIC 枠 (下辺 575) と旧 CHARGE 枠 (上辺 545) の隙間は
+**30 units しかなく**、さらに X 520 以降は DCDC 枠 (上辺 545) が塞いでいる。
+**PMIC の幅を 510 までに絞る**ことで DCDC との干渉を避けている。
+
+<details><summary>2P 版複製直後の枠座標 (参考・変更前)</summary>
+
+| ブロック | 矩形 (topLeftX, **getAll の** topLeftY, w, h) | タイトル文字 (x, y) |
 | --- | --- | --- |
 | PMIC | (35, **−785**), 665 × 210 | (35, **+785**) |
 | CHARGE | (35, **−545**), 445 × 175 | (50, **+545**) |
 | DCDC | (520, **−545**), 535 × 345 | (530, **+545**) |
 | connector | (795, **−760**), 250 × 140 | (790, **+755**) |
+
+</details>
 
 ---
 
@@ -287,7 +317,13 @@ const doc = await eda.dmt_SelectControl.getCurrentDocumentInfo();
 - **`await` 必須** — ほぼ全ての API が `Promise` を返す。付け忘れると Promise オブジェクトが返る。
 - **`return` 必須** — `console.log` は捕捉されない。
 - **コメント禁止** — コードは 1 行に潰して送るため、`//` 以降が全部消える。
-- **enum は列挙メンバで指定** — 数値を直接書かない (`ESCH_PrimitiveFillStyle` 等)。
+- ⚠️ **enum は実行時に存在しない。数値で渡すしかない** (2026-08-11 実測)。
+  `eda.ESCH_*` も裸の `ESCH_*` も **undefined** (`Object.keys(eda)` に `E*` は 0 件)。
+  型定義だけの存在なので、**値をハードコードし、コメントでメンバ名を書く**。
+  必要な値は `references/enums/` で確認する:
+  - `ESCH_PrimitiveLineType`: SOLID=0 / **DASHED=1** / DOTTED=2 / DOT_DASHED=3
+  - `ESCH_PrimitiveTextAlignMode`: LEFT_TOP=1 / **LEFT_MIDDLE=2** / LEFT_BOTTOM=3 /
+    CENTER_TOP=4 / CENTER=5 / CENTER_BOTTOM=6 / RIGHT_TOP=7 / RIGHT_MIDDLE=8 / RIGHT_BOTTOM=9
 - **シグネチャは必ず `references/classes/` で確認**してから呼ぶ。引数順・単位・省略可否を推測しない。
 - 変更系は **async パターン** (`get()` → `toAsync()` → `setState_*()` → `done()`)。
 
