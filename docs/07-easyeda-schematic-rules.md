@@ -46,6 +46,16 @@ Claude が作図する際の**API 制約**。
 | 注釈文字 | fontSize 10 (太字) でブロック仕様を記載。例: `[5] Boost 5V/3A - TPS61088 (L=1uH, ILIM 11.9A)` |
 | `getAll()` の部品総数 | **73** = part 45 + NET_PORT 27 + タイトルブロックシンボル 1 |
 
+**2026-08-11 に `eda-schematic-dump` で再計測し、上表と完全一致することを確認した** (複製後も無改変)。
+追加で判明した点:
+
+- **テキストは 11 個** — 枠タイトル 4 種 + 注釈 1 (size 10 太字) + `GND` ラベル 4 (size 5) +
+  **`connector` タイトルの重複 1**。`(790, 755)` と `(800, 760)` に同内容のテキストが 2 個ある
+  (2P 版由来の重複)。2S 版では 1 個に整理する
+- **LCSC 番号の欠落は 0 件** — 45 部品すべてに Supplier ID が入っている (2P 版の運用が正しい)
+- NET_PORT のネット内訳: `VBAT` 8 / `V5V` 8 / `VIN_B` 5 / `VBUS` 4 / `FB_N` 2 (= 27)
+- ワイヤは 76 本 / ネット 24 種
+
 **主要 IC の実測 (BOM を `sch_ManufactureData.getBomFile()` で吐かせて確認、2026-08-10)。**
 CLAUDE.md §7 の対比表が正しいことをここで裏取り済み — **project description は信用しない**
 (2P 版の description には IP2326 / MP1584EN / HY2120 と書かれているが、実装されていない):
@@ -79,8 +89,26 @@ CLAUDE.md §7 の対比表が正しいことをここで裏取り済み — **pr
 
 - **回路図と PCB で単位が 10 倍違う**。混同すると配置が 10 倍ずれる。
 - シートサイズ A4 = **1170 × 825 units** (= 11.7 × 8.25 inch、横向き)。全要素をこの範囲に収める。
-- **Y 符号の非対称**: 同一位置でも `SCH_PrimitiveRectangle` の `topLeftY` は**負値**、`SCH_PrimitiveText` の `y` は**正値**で返る (上表で実測確認)。
-  **作図前に必ず `getAll()` で既存要素の値を読み、符号を合わせること。** 推測で符号を決めない。
+- **Y 符号の非対称**: 同一位置でも `SCH_PrimitiveRectangle` の `topLeftY` は**負値**、`SCH_PrimitiveText` の `y` は**正値**で返る (§1 の表で実測確認)。
+
+### ⚠️ `create()` に渡す Y と `getAll()` が返す Y は符号が逆 (2026-08-11 実測確定)
+
+`eda-schematic-init` の probe で 2 回検証した結果:
+
+| 操作 | 渡した値 | `getAll()` の読み値 | 結論 |
+| --- | --- | --- | --- |
+| `sch_PrimitiveRectangle.create(1000, **−100**, 40, 20)` | −100 | **+100** | 反転する |
+| `sch_PrimitiveRectangle.create(1000, **+785**, 40, 20)` | +785 | **−785** | 反転する |
+| `sch_PrimitiveText.create(1000, **+100**, …)` | +100 | **+100** | **そのまま** |
+
+**規則: 矩形は `create() の Y = −(getAll() の topLeftY)`。テキストは round-trip する。**
+
+→ **§1 の枠座標表 (`topLeftY` が負値) をそのまま `create()` に渡してはいけない。符号を反転する。**
+例: PMIC 枠 (読み値 −785) を再現するには `create(35, **+785**, 665, 210)` と呼ぶ。
+反転を忘れると図面が上下反転し、A4 シート (1170 × 825) の外へ出る。
+
+**推測で符号を決めない。** 新しいページや別バージョンのクライアントで作図する前に
+[`eda-schematic-init`](../.claude/skills/eda-schematic-init/SKILL.md) の probe を 1 回流して再確認する。
 
 ---
 
@@ -197,6 +225,31 @@ const info  = await eda.dmt_Project.getProjectInfo(uuids[0]);
 project uuid を照合し、期待したプロジェクトであることを確認してから書き込み系 API を呼ぶこと。**
 照合を省くと 2P 版 (複製元) を破壊する事故が起きる。
 
+**⑥ ページ一覧 API は 0 件を返す。開き方には決まった手順がある** (2026-08-11 実測)。
+
+`dmt_Schematic.getAllSchematicPagesInfo()` と `getAllSchematicsInfo()` は
+**v3.2.149 クライアントで 0 件**を返す (BETA、例外は出ないので気づけない)。
+ページ uuid は `dmt_Project.getProjectInfo(uuid)` の `data[].schematic.page[]` から取れるが、
+**この API は呼び出しによって `data` を含まない浅いオブジェクトを返すことがある** (同一セッション内で再現)。
+
+したがって**安定する手順はこれだけ**:
+
+```javascript
+const EXPECTED = '12e4820a5a9c49509b15e944859df944';
+const PAGE = '1c498cb2e140475c';                      // docs/07 §5 に記録済み
+
+await eda.dmt_Project.openProject(EXPECTED);          // これで対象プロジェクトが current になる
+await eda.dmt_EditorControl.openDocument(PAGE);       // project を指定する引数は無い
+const doc = await eda.dmt_SelectControl.getCurrentDocumentInfo();
+if (doc.documentType !== 1 || doc.parentProjectUuid !== EXPECTED) throw new Error('別プロジェクトを開いた');
+```
+
+**`tabId` が最も確実なガード**: `<pageUuid>@<projectUuid>` 形式なので一目で判別できる。
+正常時は `1c498cb2e140475c@12e4820a5a9c49509b15e944859df944`。
+`…@9ead87f3…` になっていたら複製元 2P 版を開いている。
+
+**⑦ `getState_Footprint()` は文字列でなくオブジェクト** (`{uuid: …}`) を返す。BOM 出力時に注意。
+
 **⑤ プロジェクトの description を変更する API は無い** (`dmt_Project` は create / get / move / open のみ。
 `dmt_Folder.modifyFolderDescription` はフォルダ専用)。GUI のプロジェクトプロパティで直す。
 
@@ -254,6 +307,37 @@ await eda.sch_PrimitiveComponent.create({libraryUuid, uuid}, x, y, subPartName,
 await eda.sch_PrimitiveWire.getAll();        // getState_Net でネット名
 await eda.sch_PrimitiveComponent.getAll();   // getState_ComponentType: "part"|"netport"|"sheet"
 ```
+
+### 部品を LCSC 番号から配置する (2026-08-11 経路確立)
+
+**`lib_Device.getByLcscIds()` の戻り値を `sch_PrimitiveComponent.create()` にそのまま渡せる。**
+シンボルを名前で検索する必要はない。
+
+```javascript
+const devs = await eda.lib_Device.getByLcscIds(['C2832094', 'C15051']);   // 配列で一括取得
+await eda.sch_PrimitiveComponent.create(devs[0], x, y);                   // そのまま渡す
+```
+
+`create()` の第 1 引数は `{libraryUuid, uuid} | ILIB_DeviceItem | ILIB_DeviceSearchItem` を受ける。
+`{libraryUuid, uuid}` 形式で渡す場合の `uuid` は **device uuid** (シンボル uuid ではない)。
+
+戻り値の主要フィールド (IP2326 = C2832094 の実測):
+
+| フィールド | 値の例 | 備考 |
+| --- | --- | --- |
+| `uuid` | `c4518c8223b64b9dbaf64e3d55a9b3e1` | **device uuid**。`create()` に渡すのはこれ |
+| `libraryUuid` | `0819f05c4eef4c71ace90d822a990e87` | システムライブラリ。2P 版の NET_PORT と同一ライブラリ |
+| `footprintUuid` / `footprintName` | `VQFN-24_L4.0-W4.0-P0.50-BL-EP2.5` | データシートの記載と一致 ✓ |
+| `manufacturerId` / `supplierId` | `IP2326` / `C2832094` | BOM にそのまま入る |
+| `otherProperty` | `JLCPCB Part Class: Extended Part` / `Designator: U?` / `Datasheet` / パラメトリック情報 | **`eda-bom-check` に使える** |
+
+⚠️ **`symbol` / `symbolUuid` は `undefined` で返る。** シンボル uuid が必要なら
+`otherProperty.Symbol` を見る (IP2326 は `4b4b4ac0425a4267bcfef64d8979a413`)。
+ただし `create()` は device を受け取るので通常は不要。
+
+**主要部品の解決確認 (2026-08-11、8/8 成功)**:
+`C2832094` (IP2326) / `C15051` (MP1584EN-LF-Z) / `C8545` (2N7002) / `C20526` (MMBT3904) /
+`C85202` (BSS84-7-F) / `C123800` (SMF12A) / `C2286` (KT-0603R) / `C8678` (SS34)
 
 ### NET_PORT (グローバルラベル) の作り方
 
