@@ -45,6 +45,8 @@ EasyEDA Pro 上の設計データは未作成 (2P 版の複製から始める)�
 | **電源ヘッダ配置** | **CN5 (VOUT 6p) / CN6 (VIN 6p) を基板左右端・同一 Y・対向配置** (2P 版踏襲) |
 | バッテリ | 2S LiPo 2000 mAh × 2 直列 — **ユーザー確認済みで正しい** (親 doc の表記変更は不要) |
 | パス表記 | **絶対パス禁止**。別 PC で作業する前提でリポジトリルート相対で書く |
+| **リポジトリ** | **単独リポジトリ `sastles-com/power-2S-02` が正本**。モノレポとの二重管理は廃止 (CLAUDE.md §5) |
+| 作業環境 (Linux) | EasyEDA Pro 3.2.149 + `easyeda-api` skill v1.1.3 + `run-api-gateway` v1.0.5 + **Node 22 必須** ([`docs/07`](docs/07-easyeda-schematic-rules.md) §3) |
 | skill 運用 | 繰り返す操作は積極的に skill 化する (特に EasyEDA 操作、CLAUDE.md §6.1) |
 | **充電入力** | **コネクタのみ** (磁気端子経由)。Type-C レセプタクルは載せない |
 | コネクタ | 最小構成 4〜5 個に削減。デバッグ口はテストポイントで代用 |

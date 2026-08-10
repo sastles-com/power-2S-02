@@ -80,6 +80,48 @@ Claude が作図する際の**API 制約**。
 
 **この 3 つが揃っていない PC では作図できない。** 別 PC で作業を始める前に確認すること。
 
+構成は次のとおり。**ブリッジは EDA が外向きに WebSocket 接続してくる**方式なので、
+EasyEDA Pro より先にブリッジサーバを起動しておく。
+
+```text
+Claude ──HTTP──> bridge-server.mjs ──WebSocket──> run-api-gateway 拡張 ──> eda.* API
+              (49620-49629 を走査)   (拡張が /health で相手を確認して接続)
+```
+
+- ブリッジ本体: `easyeda-api` skill の `scripts/bridge-server.mjs`
+- **Node.js 22 LTS 以上が必須** (skill 側の依存。20 系では動かない)
+- 接続の実装は `eda.sys_WebSocket.register()`。よって拡張の**外部交互権限が必須**
+
+### 環境構築 (Linux / 2026-08-10 実施)
+
+```bash
+# 1. skill を導入 (Claude Code の場合は workdir を ~/.claude にする)
+npx clawhub@latest install easyeda-api --workdir "$HOME/.claude" --dir skills
+cd "$HOME/.claude/skills/easyeda-api" && npm install --omit=dev
+
+# 2. ブリッジ起動 (Node 22 以上で実行すること)
+node scripts/bridge-server.mjs        # => http://localhost:49620
+
+# 3. EasyEDA Pro (Linux 版) — 公式 zip をユーザー領域へ展開して使う
+#    zip: https://easyeda.com/page/download の easyeda-pro-linux-x64-<ver>.zip
+#    同梱の install.sh は /opt/apps へ入れるため sudo と再起動を要求する
+
+# 4. 拡張を導入 (GUI 操作)
+#    run-api-gateway_v1.0.5_global.eext を取得:
+#      https://github.com/easyeda/eext-run-api-gateway/releases
+#    Advanced (高级) → 扩展管理器 → インポート → 拡張設定で以下を ON:
+#      「外部交互を許可 / Allow external interaction」← 必須
+#      「トップメニューに表示 / Display in top menu」
+```
+
+**注意: デスクトップクライアントはオンライン版より古い。** 型定義 (`@jlceda/pro-api-types`) は
+オンライン版 (v3.2.167 / v4 系) まで含むため、`ADD since EDA vX` 付きの API はクライアントに無い。
+実機バージョンは `await eda.sys_Environment.getEditorCurrentVersion()` で確認する。
+
+**設計データはクラウド共有なので、同じアカウントで web 版 (pro.easyeda.com) からも閲覧・編集できる。**
+ただしクライアントを離線/半離線モードで使うとローカル保存になり同期しない
+(`eda.sys_Environment.isOfflineMode()` / `isHalfOfflineMode()` で確認可能)。
+
 > **繰り返す操作は skill にする** — 以下の定型手順は毎回書き直さず、CLAUDE.md §6.1 の方針に従って
 > `.claude/skills/` に skill 化する。特に座標単位・Y 符号・シンボル UUID を埋め込んだ skill を作れば、
 > 本ファイルの制約を人間/AI が読み落としても事故らない。
@@ -90,6 +132,13 @@ Claude が作図する際の**API 制約**。
 # 1. ブリッジ稼働とEDA接続を確認 (ポートは 49620-49629 を走査)
 curl -s http://localhost:49620/health          # edaConnected: true を確認
 curl -s http://localhost:49620/eda-windows     # ウィンドウを特定
+```
+
+複数ウィンドウが繋がっている場合は対象を明示的に選ぶ (誤ったプロジェクトへの作図を防ぐ):
+
+```bash
+curl -s -X POST http://localhost:49620/eda-windows/select \
+  -H "Content-Type: application/json" -d '{"windowId": "<id>"}'
 ```
 
 コード実行前に**必ずドキュメント状態を確認**する:

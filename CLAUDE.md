@@ -6,8 +6,8 @@
 - 親プロジェクト: **Isolation Sphere V2** — リポジトリ `sastles-com/FPC-isolation-sphere` の `CLAUDE.md`
   - 本基板は親プロジェクトの「充電 IC は別プロジェクト管轄」に当たる電源サブシステム。
   - 親 CLAUDE.md の規約 (commit 運用、質問優先の原則) は本プロジェクトにも適用される。
-- **リポジトリ二重管理**: 本フォルダはモノレポ (`FPC-isolation-sphere/kiban/resized/power-2s-02/`) と
-  単独リポジトリ **`https://github.com/sastles-com/power-2S-02.git`** の両方にある。同期手順は §5 参照。
+- **リポジトリ: 単独リポジトリ `https://github.com/sastles-com/power-2S-02.git` が正本** (2026-08-10 決定)。
+  モノレポ (`FPC-isolation-sphere/kiban/resized/power-2s-02/`) との二重管理は廃止した。詳細は §5 参照。
 
 > **⚠️ パスについて**: 本ドキュメント群は**どの PC でも通用するよう絶対パスを書かない**方針。
 > 作業機が変わる前提なので、パスは常に**リポジトリルートからの相対パス**で書くこと。
@@ -114,18 +114,22 @@ git clone https://github.com/sastles-com/power-2S-02.git
 親リポジトリ (`FPC-isolation-sphere`) が無い環境では、親 docs への参照は解決できない。
 必要な親側の情報は本リポジトリ内に転記済み (CLAUDE.md §9 など)。
 
-### 単独リポジトリへの同期 (モノレポ側で作業した場合)
+### 正本は単独リポジトリ (2026-08-10 決定)
+
+**編集は常にこの単独リポジトリで行い、そのまま push する。** モノレポとの二重管理は廃止した。
 
 ```bash
-# <monorepo> = FPC-isolation-sphere のクローン先
-cd <monorepo>
-git subtree split --prefix=kiban/resized/power-2s-02 -b power-2s-02-export
-git push https://github.com/sastles-com/power-2S-02.git power-2s-02-export:main
-git branch -D power-2s-02-export
+git add -A && git commit -m "..."   # 作業単位ごと
+git push origin main
 ```
 
-⚠️ **両方で編集すると履歴が分岐する。** どちらか一方を作業機ごとの正本と決めて運用すること
-(モノレポ側で編集 → 上記で同期、または単独リポジトリ側で編集 → モノレポへ `git subtree pull`)。
+⚠️ 旧運用 (モノレポを正本にして `git subtree split` で単独リポジトリへ push) は**廃止**。理由:
+
+- 作業機を移した際にモノレポ側へ `kiban/` を持ち込まず、正本が実在しない状態になった
+- 二重管理は履歴分岐の事故要因で、設計データがクラウドにある本プロジェクトでは実利がない
+
+モノレポ側に取り込みたくなった場合のみ、単独リポジトリを正本として
+モノレポ側で `git subtree add` / `pull` する (逆方向の push はしない)。
 
 ## 6. Workflow / 開発ワークフロー
 
@@ -136,7 +140,7 @@ git branch -D power-2s-02-export
 4. **レイアウト**: [`docs/04`](docs/04-layout-thermal.md) のゾーニング・ルールに従う
 5. **検証**: ERC / DRC クリーン + 電流容量計算 + 3D で干渉確認
 6. **発注**: EasyEDA から JLCPCB へ直発注 ([`docs/05`](docs/05-jlcpcb-fab.md))
-7. **コミット**: 仕様書の更新は作業単位ごとに commit & push、単独リポジトリへも同期 (§5)
+7. **コミット**: 仕様書の更新は作業単位ごとに commit & `git push origin main` (正本は単独リポジトリ、§5)
 
 ### 6.1 Skill の作成方針 / Proactively build skills
 
