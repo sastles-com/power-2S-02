@@ -15,7 +15,7 @@
 - **What**: これまで既製モジュール 2 枚をスタックしていた 2S 電源を、**モジュールの回路をディスクリートで取り込み、40×40 mm・4 層基板 1 枚に集約**する。
   1. **IP2326 充電回路** — 既製品「Type-C 15W 2-3S Lithium Battery Charging boost Module」の回路をオンボード化 (2S 構成)
   2. **MP1584 降圧回路** — 既製品 MP1584EN ミニ降圧モジュール (トリマ調整式) の回路をオンボード化。**出力は固定 5V** (トリマ廃止、固定抵抗分圧)
-  3. **出力スイッチ回路** — legacy の MAX16054 + DMG3415 (P-ch FET) プッシュボタンラッチをそのまま踏襲
+  3. **出力スイッチ回路** — モーメンタリボタンによるラッチ ON/OFF **機能**は踏襲するが、**MAX16054 方式は必須としない**。オフ時電流最小化のため MP1584 EN 制御を含む方式比較を [`docs/06-power-switch.md`](docs/06-power-switch.md) で実施中 (2026-08-10 方針)
 - **Why**: モジュールスタックは Z 方向に嵩張り、球体コアに収まらない。1 枚化 + ベタ GND + 排熱設計で信頼性も上げる。
 - **発注先: JLCPCB** (基板 + PCBA)。BOM は LCSC 部品番号で管理する。
 - **保護 (BMS)**: IP2326 内蔵保護は所望動作に合わないため**使わない**。市販 **XR-2S-30A** (Lisolec 2S 6A/10A) を**基板外・ワイヤ接続**で使用 (回路図上はフットプリント無しシンボル `U2` として結線のみ記録)。
@@ -72,6 +72,7 @@
 | 03 | [`docs/03-mp1584-module.md`](docs/03-mp1584-module.md) | MP1584 既製モジュールの仕様・固定 5V 化の設計指針 |
 | 04 | [`docs/04-layout-thermal.md`](docs/04-layout-thermal.md) | 40×40 / 4 層のレイアウト方針・ベタ GND・排熱設計 |
 | 05 | [`docs/05-jlcpcb-fab.md`](docs/05-jlcpcb-fab.md) | JLCPCB 発注フロー・BOM/CPL 仕様・LCSC 部品選定ルール |
+| 06 | [`docs/06-power-switch.md`](docs/06-power-switch.md) | 電源 ON/OFF 回路の方式検討 (MAX16054 必須とせず、MP1584 EN 制御を含む比較) |
 
 ## 5. Repository Layout / フォルダ構成
 
@@ -100,9 +101,19 @@ power-2s-02/
 
 ## 7. References / 参考資料
 
-- **ユーザー設計の 2P 版電源基板 (EasyEDA Pro)**: [プロジェクトリンク](https://pro.easyeda.com/editor#id=9ead87f316b44e3b8a20dddd6de44752,tab=*1c498cb2e140475c@9ead87f316b44e3b8a20dddd6de44752|864de495483a0562@9ead87f316b44e3b8a20dddd6de44752)
-  - 同系統の電源基板の先行設計。回路・部品選定の参考にする (本プロジェクト自体は KiCad で進める)
-  - エディタリンクのため要ログイン。Claude から中身を読む場合は EasyEDA Pro を起動した状態で `easyeda-api` skill (WebSocket ブリッジ) を使う
+- **ユーザー設計の 2P 版電源基板 "isolation-sphere-power" (EasyEDA Pro)**: [プロジェクトリンク](https://pro.easyeda.com/editor#id=9ead87f316b44e3b8a20dddd6de44752,tab=*1c498cb2e140475c@9ead87f316b44e3b8a20dddd6de44752|864de495483a0562@9ead87f316b44e3b8a20dddd6de44752)
+  - エディタリンクのため要ログイン。Claude から中身を読む場合は EasyEDA Pro を起動した状態で `easyeda-api` skill (WebSocket ブリッジ) を使う (2026-08-10 に回路図読み取り実績あり)
+  - **⚠️ これは 1S2P 版であり、本プロジェクト (2S) とはアーキテクチャが異なる。電源変換段をそのまま写してはいけない:**
+
+  | | 2P 版 (参考設計) | 2S 版 (本プロジェクト) |
+  | --- | --- | --- |
+  | パック | 1S2P (3.7V 公称)、バランス不要 | 2S 直列 (7.4V 公称)、**BM バランス必須** |
+  | 充電 | TP4056 (1S リニア) | **IP2326 (5V→8.4V 昇圧チャージャ)** |
+  | 保護 | 1S 用 | **XR-2S-30A (2S BMS、オフボード)** |
+  | 5V 生成 | TPS61088 で**昇圧** | **MP1584 で降圧** |
+
+  - **流用してよいもの**: ラッチ電源ボタン回路の考え方 (MAX16054 + SSM6J808R。ただし方式再検討中 → [`docs/06`](docs/06-power-switch.md))、JST PH コネクタ / テストポイント / INA219 計測口という検証装備の流儀、受動部品・SS34 等の LCSC 実績番号
+  - **流用してはいけないもの**: 充電段 (TP4056)・昇圧段 (TPS61088) の回路 — 2S 版の充電/降圧は既製モジュールのリバエン + データシート照合で設計する ([`docs/02`](docs/02-ip2326-module.md)/[`docs/03`](docs/03-mp1584-module.md))
 - legacy 解析の一次資料: `legacy/power-2S.kicad_sch` / `.kicad_pcb`
 - 親プロジェクト: `/Users/katano/work/FPC-isolation-sphere/CLAUDE.md` (§2.6 給電・§2.7 BOM・docs/03-power-charging.md)
 
