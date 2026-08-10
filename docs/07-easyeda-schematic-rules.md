@@ -107,11 +107,19 @@ node scripts/bridge-server.mjs        # => http://localhost:49620
 #    同梱の install.sh は /opt/apps へ入れるため sudo と再起動を要求する
 
 # 4. 拡張を導入 (GUI 操作)
-#    run-api-gateway_v1.0.5_global.eext を取得:
+#    run-api-gateway_v1.0.5_global.eext を取得 (global 版。中国版 .eext とは別物):
 #      https://github.com/easyeda/eext-run-api-gateway/releases
 #    Advanced (高级) → 扩展管理器 → インポート → 拡張設定で以下を ON:
 #      「外部交互を許可 / Allow external interaction」← 必須
 #      「トップメニューに表示 / Display in top menu」
+
+# 5. Online モードで使う (GUI 操作) — 半離線だとクラウドプロジェクトが 0 件になる。下記「落とし穴」②
+```
+
+`git clone` 直後は skill のスクリプトに実行権限が付いていないことがある:
+
+```bash
+chmod +x .claude/skills/*/scripts/*.sh
 ```
 
 **注意: デスクトップクライアントはオンライン版より古い。** 型定義 (`@jlceda/pro-api-types`) は
@@ -121,6 +129,46 @@ node scripts/bridge-server.mjs        # => http://localhost:49620
 **設計データはクラウド共有なので、同じアカウントで web 版 (pro.easyeda.com) からも閲覧・編集できる。**
 ただしクライアントを離線/半離線モードで使うとローカル保存になり同期しない
 (`eda.sys_Environment.isOfflineMode()` / `isHalfOfflineMode()` で確認可能)。
+
+#### 起動順とモードの落とし穴 (2026-08-10 実測)
+
+**① 起動順は必ず「ブリッジ → EasyEDA Pro」。** 拡張 (`run-api-gateway` v1.0.5) の実装値:
+
+```js
+PORT_START = 49620; PORT_END = 49629;
+RETRY_DELAY_MS = 3000; MAX_RETRIES = 5;          // → 約 15 秒で打ち切り、以後再試行しない
+activationEvents: { onStartupFinished: true }    // 起動時に 1 回だけ自動接続
+```
+
+EDA を先に起動するとブリッジが立つ前に 15 秒で諦め、`edaConnected: false` のまま放置される。
+**復旧はトップメニュー `API Gateway` → `Reconnect`** (GUI 操作。API からは叩けない)。
+`Toggle Auto-Connect Status` は ON (`Auto-Connect enabled`) にしておく。
+
+**② 半離線モードではクラウドプロジェクトが 1 件も見えない。** 作図前に **Online モード**であることを確認する。
+半離線のままだと `getUserInfo()` が**ローカル用の別識別子**を返す (customerCode が空、uuid も異なる) ため、
+「ログインできているのにプロジェクトが 0 件」という状態になり原因を見誤りやすい。
+
+| モード | `isOnlineMode` | プロジェクト一覧 | `getUserInfo().customerCode` |
+| --- | --- | --- | --- |
+| 半離線 (NG) | `false` | **0 件** | 空 |
+| Online (OK) | `true` | クラウドの全件 | 実アカウントの値 |
+
+**③ プロジェクト照会には `teamUuid` が必須。** 引数なしだと 0 件が返り、②と区別できない。
+
+```javascript
+// NG: 引数なしは 0 件を返す (エラーにならないので気づけない)
+await eda.dmt_Project.getAllProjectsUuid();
+
+// OK: teamUuid を渡す。getCurrentTeamInfo() は uuid:"" を返すので使えない
+const team = (await eda.dmt_Team.getAllTeamsInfo())[0].uuid;
+const uuids = await eda.dmt_Project.getAllProjectsUuid(team);
+const info  = await eda.dmt_Project.getProjectInfo(uuids[0]);
+// 名前は info.friendlyName。info.name は存在せず undefined になる
+```
+
+- `getAllInvolvedTeamInfo()` は v3.2.149 クライアントで例外を投げる (`Cannot read properties of undefined (reading 'map')`)。使わない。
+- 本アカウントの Personal team uuid = **`65ba7c60a1884bee825c356aebdc2ef7`** (ユーザー uuid と同値)。
+- 複製元 2P 版 `isolation-sphere-power` の project uuid = **`9ead87f316b44e3b8a20dddd6de44752`** (§7 のリンク `id=` と一致)。
 
 > **繰り返す操作は skill にする** — 以下の定型手順は毎回書き直さず、CLAUDE.md §6.1 の方針に従って
 > `.claude/skills/` に skill 化する。特に座標単位・Y 符号・シンボル UUID を埋め込んだ skill を作れば、

@@ -8,12 +8,22 @@
 **仕様確定 → 回路図作成に着手可能。ただしデータシート照合と IP2326 入手性確認が先行タスク。**
 EasyEDA Pro 上の設計データは未作成 (2P 版の複製から始める)。
 
+**作図環境は 2026-08-10 に Linux 機で疎通確認済み** (ブリッジ ↔ EDA 接続 / Online モード / クラウド 5 プロジェクト可視)。
+確認は `.claude/skills/eda-connect/scripts/eda-exec.sh .claude/skills/eda-connect/scripts/connect-check.js` 一発で済む。
+warnings が「回路図ページではありません」だけなら正常。
+
 ## 完了していること
 
 - [x] legacy `power-2S` (50×40, KiCad 10) の完全解析 — 全ネット・ブロック構成・コネクタ表を [`docs/01`](docs/01-legacy-analysis.md) に文書化
 - [x] 2P 版 (EasyEDA `isolation-sphere-power`) をブリッジ経由で実測 — BOM・LCSC 番号・作図スタイル (枠 4 個 / NET_PORT 27 個 / GND 例外) を [`docs/07`](docs/07-easyeda-schematic-rules.md) に記録
 - [x] 主要仕様の決定 (下表)
 - [x] 仕様書一式 (`docs/01`〜`07`) 作成
+- [x] Linux 作業機での作図環境の疎通確認 (2026-08-10) — 落とし穴は [`docs/07`](docs/07-easyeda-schematic-rules.md) §3 に記録
+  - EasyEDA Pro 3.2.149.88089769 (2026-06-03 ビルド) / EasyEDA Pro global 版 / Online モード
+  - アカウント `tajmahal.jp` (customerCode `2653466A`)、Personal team uuid `65ba7c60a1884bee825c356aebdc2ef7`
+  - 複製元 2P 版 `isolation-sphere-power` = project uuid `9ead87f316b44e3b8a20dddd6de44752`
+  - 同アカウントの他プロジェクト: `Isolation-sphere-BMS` / `isolation-sphere-core40` / `WS2812-square` / `WS2813-square`
+  - **`power-2s-02` プロジェクトは未作成**
 
 ## 次のアクション (優先順)
 
@@ -47,6 +57,8 @@ EasyEDA Pro 上の設計データは未作成 (2P 版の複製から始める)�
 | パス表記 | **絶対パス禁止**。別 PC で作業する前提でリポジトリルート相対で書く |
 | **リポジトリ** | **単独リポジトリ `sastles-com/power-2S-02` が正本**。モノレポとの二重管理は廃止 (CLAUDE.md §5) |
 | 作業環境 (Linux) | EasyEDA Pro 3.2.149 + `easyeda-api` skill v1.1.3 + `run-api-gateway` v1.0.5 + **Node 22 必須** ([`docs/07`](docs/07-easyeda-schematic-rules.md) §3) |
+| **EDA の使用モード** | **Online モード必須**。半離線ではクラウドプロジェクトが 0 件になり作図できない ([`docs/07`](docs/07-easyeda-schematic-rules.md) §3) |
+| 起動順 | **ブリッジ → EasyEDA Pro**。逆順だと拡張が 15 秒で接続を諦める → `API Gateway → Reconnect` で復旧 |
 | skill 運用 | 繰り返す操作は積極的に skill 化する (特に EasyEDA 操作、CLAUDE.md §6.1) |
 | **充電入力** | **コネクタのみ** (磁気端子経由)。Type-C レセプタクルは載せない |
 | コネクタ | 最小構成 4〜5 個に削減。デバッグ口はテストポイントで代用 |
