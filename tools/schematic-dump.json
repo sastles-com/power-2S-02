@@ -1,0 +1,4749 @@
+{
+  "project": {
+    "uuid": "12e4820a5a9c49509b15e944859df944",
+    "name": "power-2S-02"
+  },
+  "doc": {
+    "uuid": "1c498cb2e140475c",
+    "parentProjectUuid": "12e4820a5a9c49509b15e944859df944"
+  },
+  "parts": [
+    {
+      "type": "part",
+      "des": "CN5",
+      "x": 1535,
+      "y": 855,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 1515,
+          "y": 880
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1515,
+          "y": 870
+        },
+        {
+          "num": "3",
+          "name": "3",
+          "x": 1515,
+          "y": 860
+        },
+        {
+          "num": "4",
+          "name": "4",
+          "x": 1515,
+          "y": 850
+        },
+        {
+          "num": "5",
+          "name": "5",
+          "x": 1515,
+          "y": 840
+        },
+        {
+          "num": "6",
+          "name": "6",
+          "x": 1515,
+          "y": 830
+        }
+      ],
+      "value": "VOUT_HDR",
+      "lcsc": "C492405",
+      "mpn": "OUTPUT",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "225c0b48789e6035"
+    },
+    {
+      "type": "part",
+      "des": "CN6",
+      "x": 1355,
+      "y": 855,
+      "rot": 0,
+      "mirror": true,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 1375,
+          "y": 880
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1375,
+          "y": 870
+        },
+        {
+          "num": "3",
+          "name": "3",
+          "x": 1375,
+          "y": 860
+        },
+        {
+          "num": "4",
+          "name": "4",
+          "x": 1375,
+          "y": 850
+        },
+        {
+          "num": "5",
+          "name": "5",
+          "x": 1375,
+          "y": 840
+        },
+        {
+          "num": "6",
+          "name": "6",
+          "x": 1375,
+          "y": 830
+        }
+      ],
+      "value": "VIN_HDR",
+      "lcsc": "C492405",
+      "mpn": "POWER",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "225c0b48789e6035"
+    },
+    {
+      "type": "part",
+      "des": "R15",
+      "x": 100,
+      "y": 700,
+      "rot": 90,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 100,
+          "y": 720
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 100,
+          "y": 680
+        }
+      ],
+      "value": "1M",
+      "lcsc": "C22935",
+      "mpn": "0603WAF1004T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "0c6f5753f83bb5ac"
+    },
+    {
+      "type": "part",
+      "des": "R11",
+      "x": 200,
+      "y": 700,
+      "rot": 90,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 200,
+          "y": 720
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 200,
+          "y": 680
+        }
+      ],
+      "value": "2.2M",
+      "lcsc": "C22938",
+      "mpn": "0603WAF2204T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "690b5588b9312f35"
+    },
+    {
+      "type": "part",
+      "des": "R12",
+      "x": 305,
+      "y": 700,
+      "rot": 90,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 305,
+          "y": 720
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 305,
+          "y": 680
+        }
+      ],
+      "value": "1M",
+      "lcsc": "C22935",
+      "mpn": "0603WAF1004T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "0c6f5753f83bb5ac"
+    },
+    {
+      "type": "part",
+      "des": "R17",
+      "x": 520,
+      "y": 700,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 540,
+          "y": 700
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 500,
+          "y": 700
+        }
+      ],
+      "value": "10k",
+      "lcsc": "C25804",
+      "mpn": "0603WAF1002T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "0a74d5de5b29cba1"
+    },
+    {
+      "type": "part",
+      "des": "Q4",
+      "x": 480,
+      "y": 700,
+      "rot": 180,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "3",
+          "name": "D",
+          "x": 470,
+          "y": 680
+        },
+        {
+          "num": "1",
+          "name": "G",
+          "x": 500,
+          "y": 700
+        },
+        {
+          "num": "2",
+          "name": "S",
+          "x": 470,
+          "y": 720
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C85202",
+      "mpn": "BSS84-7-F",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "188bff1c4a7cdf95"
+    },
+    {
+      "type": "part",
+      "des": "R13",
+      "x": 470,
+      "y": 620,
+      "rot": 90,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 470,
+          "y": 640
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 470,
+          "y": 600
+        }
+      ],
+      "value": "2.4M",
+      "lcsc": "C13319",
+      "mpn": "0603WAF2404T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "4cf4b2371dcc5962"
+    },
+    {
+      "type": "part",
+      "des": "R16",
+      "x": 150,
+      "y": 645,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 170,
+          "y": 645
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 130,
+          "y": 645
+        }
+      ],
+      "value": "10k",
+      "lcsc": "C25804",
+      "mpn": "0603WAF1002T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "0a74d5de5b29cba1"
+    },
+    {
+      "type": "part",
+      "des": "R18",
+      "x": 560,
+      "y": 660,
+      "rot": 90,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 560,
+          "y": 680
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 560,
+          "y": 640
+        }
+      ],
+      "value": "1.5k",
+      "lcsc": "C22843",
+      "mpn": "0603WAF1501T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "e20477ad47185d16"
+    },
+    {
+      "type": "part",
+      "des": "LED2",
+      "x": 560,
+      "y": 600,
+      "rot": 90,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "K",
+          "x": 560,
+          "y": 580
+        },
+        {
+          "num": "1",
+          "name": "A",
+          "x": 560,
+          "y": 620
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C2286",
+      "mpn": "KT-0603R",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "21d140f01c42673e"
+    },
+    {
+      "type": "part",
+      "des": "Q1",
+      "x": 245,
+      "y": 660,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "3",
+          "name": "D",
+          "x": 255,
+          "y": 680
+        },
+        {
+          "num": "1",
+          "name": "G",
+          "x": 225,
+          "y": 660
+        },
+        {
+          "num": "2",
+          "name": "S",
+          "x": 255,
+          "y": 640
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C8545",
+      "mpn": "2N7002",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "8ccf7293cb32d1a9"
+    },
+    {
+      "type": "part",
+      "des": "Q6",
+      "x": 220,
+      "y": 510,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "3",
+          "name": "D",
+          "x": 230,
+          "y": 530
+        },
+        {
+          "num": "1",
+          "name": "G",
+          "x": 200,
+          "y": 510
+        },
+        {
+          "num": "2",
+          "name": "S",
+          "x": 230,
+          "y": 490
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C8545",
+      "mpn": "2N7002",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "8ccf7293cb32d1a9"
+    },
+    {
+      "type": "part",
+      "des": "C20",
+      "x": 545,
+      "y": 430,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 545,
+          "y": 445
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 545,
+          "y": 415
+        }
+      ],
+      "value": "220pF",
+      "lcsc": "C27675",
+      "mpn": "CL10C221JB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "099c487bc131703b"
+    },
+    {
+      "type": "part",
+      "des": "Q2",
+      "x": 335,
+      "y": 520,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "3",
+          "name": "C",
+          "x": 345,
+          "y": 540
+        },
+        {
+          "num": "1",
+          "name": "B",
+          "x": 325,
+          "y": 520
+        },
+        {
+          "num": "2",
+          "name": "E",
+          "x": 345,
+          "y": 500
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C20526",
+      "mpn": "MMBT3904(RANGE:100-300)",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5ce20a12e50a2c81"
+    },
+    {
+      "type": "part",
+      "des": "Q3",
+      "x": 315,
+      "y": 440,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "3",
+          "name": "C",
+          "x": 325,
+          "y": 460
+        },
+        {
+          "num": "1",
+          "name": "B",
+          "x": 305,
+          "y": 440
+        },
+        {
+          "num": "2",
+          "name": "E",
+          "x": 325,
+          "y": 420
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C20526",
+      "mpn": "MMBT3904(RANGE:100-300)",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5ce20a12e50a2c81"
+    },
+    {
+      "type": "part",
+      "des": "Q5",
+      "x": 175,
+      "y": 575,
+      "rot": 0,
+      "mirror": true,
+      "net": null,
+      "pins": [
+        {
+          "num": "3",
+          "name": "D",
+          "x": 165,
+          "y": 595
+        },
+        {
+          "num": "1",
+          "name": "G",
+          "x": 195,
+          "y": 575
+        },
+        {
+          "num": "2",
+          "name": "S",
+          "x": 165,
+          "y": 555
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C8545",
+      "mpn": "2N7002",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "8ccf7293cb32d1a9"
+    },
+    {
+      "type": "part",
+      "des": "C21",
+      "x": 70,
+      "y": 595,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 70,
+          "y": 610
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 70,
+          "y": 580
+        }
+      ],
+      "value": "1nF",
+      "lcsc": "C1588",
+      "mpn": "CL10B102KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "8e32f31be06ae5ab"
+    },
+    {
+      "type": "part",
+      "des": "D4",
+      "x": 30,
+      "y": 595,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "C",
+          "x": 30,
+          "y": 615
+        },
+        {
+          "num": "2",
+          "name": "A",
+          "x": 30,
+          "y": 575
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C123800",
+      "mpn": "SMF12A",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "69fbcde944b191fb"
+    },
+    {
+      "type": "part",
+      "des": "C19",
+      "x": 200,
+      "y": 495,
+      "rot": 270,
+      "mirror": true,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 200,
+          "y": 510
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 200,
+          "y": 480
+        }
+      ],
+      "value": "10nF",
+      "lcsc": "C1589",
+      "mpn": "CL10B103KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "8c8260826b594ff2"
+    },
+    {
+      "type": "part",
+      "des": "C17",
+      "x": 350,
+      "y": 655,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 350,
+          "y": 635
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 350,
+          "y": 675
+        }
+      ],
+      "value": "1µF",
+      "lcsc": "C15849",
+      "mpn": "CL10A105KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5f2dd300f83c5da8"
+    },
+    {
+      "type": "part",
+      "des": "C18",
+      "x": 470,
+      "y": 540,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 470,
+          "y": 555
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 470,
+          "y": 525
+        }
+      ],
+      "value": "4.7µF",
+      "lcsc": "C1779",
+      "mpn": "CL21A475KAQNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "8225615bea2e0ab1"
+    },
+    {
+      "type": "part",
+      "des": "R14",
+      "x": 420,
+      "y": 580,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 420,
+          "y": 560
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 420,
+          "y": 600
+        }
+      ],
+      "value": "4.7M",
+      "lcsc": "C23163",
+      "mpn": "0603WAF4704T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "4dbaf29f629689e8"
+    },
+    {
+      "type": "part",
+      "des": "U1",
+      "x": 300,
+      "y": 160,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "DM",
+          "x": 225,
+          "y": 215
+        },
+        {
+          "num": "2",
+          "name": "DP",
+          "x": 225,
+          "y": 205
+        },
+        {
+          "num": "3",
+          "name": "VSET",
+          "x": 225,
+          "y": 195
+        },
+        {
+          "num": "4",
+          "name": "NTC",
+          "x": 225,
+          "y": 185
+        },
+        {
+          "num": "5",
+          "name": "BAT_STAT",
+          "x": 225,
+          "y": 175
+        },
+        {
+          "num": "6",
+          "name": "LED",
+          "x": 225,
+          "y": 165
+        },
+        {
+          "num": "7",
+          "name": "TIME_SET",
+          "x": 225,
+          "y": 155
+        },
+        {
+          "num": "8",
+          "name": "VIN_UVSET",
+          "x": 225,
+          "y": 145
+        },
+        {
+          "num": "9",
+          "name": "VIN_OVSET",
+          "x": 225,
+          "y": 135
+        },
+        {
+          "num": "10",
+          "name": "CON_SEL",
+          "x": 225,
+          "y": 125
+        },
+        {
+          "num": "11",
+          "name": "ISET",
+          "x": 225,
+          "y": 115
+        },
+        {
+          "num": "12",
+          "name": "EN",
+          "x": 225,
+          "y": 105
+        },
+        {
+          "num": "13",
+          "name": "VIN",
+          "x": 375,
+          "y": 105
+        },
+        {
+          "num": "14",
+          "name": "BST",
+          "x": 375,
+          "y": 115
+        },
+        {
+          "num": "15",
+          "name": "LX",
+          "x": 375,
+          "y": 125
+        },
+        {
+          "num": "16",
+          "name": "LX",
+          "x": 375,
+          "y": 135
+        },
+        {
+          "num": "17",
+          "name": "LX",
+          "x": 375,
+          "y": 145
+        },
+        {
+          "num": "18",
+          "name": "PGND",
+          "x": 375,
+          "y": 155
+        },
+        {
+          "num": "19",
+          "name": "VSYS",
+          "x": 375,
+          "y": 165
+        },
+        {
+          "num": "20",
+          "name": "VSYS",
+          "x": 375,
+          "y": 175
+        },
+        {
+          "num": "21",
+          "name": "VOUT",
+          "x": 375,
+          "y": 185
+        },
+        {
+          "num": "22",
+          "name": "VOUT",
+          "x": 375,
+          "y": 195
+        },
+        {
+          "num": "23",
+          "name": "VBATM",
+          "x": 375,
+          "y": 205
+        },
+        {
+          "num": "24",
+          "name": "VBAT_GND",
+          "x": 375,
+          "y": 215
+        },
+        {
+          "num": "25",
+          "name": "EP",
+          "x": 300,
+          "y": 235
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C2832094",
+      "mpn": "IP2326",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "7ffa93d1d2817952"
+    },
+    {
+      "type": "part",
+      "des": "R6",
+      "x": 170,
+      "y": 185,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 190,
+          "y": 185
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 150,
+          "y": 185
+        }
+      ],
+      "value": "51k",
+      "lcsc": "C23196",
+      "mpn": "0603WAF5102T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "56696c6d3cc7da2f"
+    },
+    {
+      "type": "part",
+      "des": "R2",
+      "x": 170,
+      "y": 165,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 190,
+          "y": 165
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 150,
+          "y": 165
+        }
+      ],
+      "value": "100R",
+      "lcsc": "C22775",
+      "mpn": "0603WAF1000T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "a38905a854bf1769"
+    },
+    {
+      "type": "part",
+      "des": "R5",
+      "x": 170,
+      "y": 145,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 190,
+          "y": 145
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 150,
+          "y": 145
+        }
+      ],
+      "value": "68k",
+      "lcsc": "C23231",
+      "mpn": "0603WAF6802T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "d2df1cce2cd7c86c"
+    },
+    {
+      "type": "part",
+      "des": "R4",
+      "x": 170,
+      "y": 115,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 190,
+          "y": 115
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 150,
+          "y": 115
+        }
+      ],
+      "value": "91k",
+      "lcsc": "C23265",
+      "mpn": "0603WAF9102T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "4faf2c3ca57ecc06"
+    },
+    {
+      "type": "part",
+      "des": "LED1",
+      "x": 100,
+      "y": 165,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "K",
+          "x": 80,
+          "y": 165
+        },
+        {
+          "num": "1",
+          "name": "A",
+          "x": 120,
+          "y": 165
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C2286",
+      "mpn": "KT-0603R",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "21d140f01c42673e"
+    },
+    {
+      "type": "part",
+      "des": "R1",
+      "x": 450,
+      "y": 105,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 470,
+          "y": 105
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 430,
+          "y": 105
+        }
+      ],
+      "value": "1R",
+      "lcsc": "C112305",
+      "mpn": "RC0603FR-071RL",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "2fadbe445051d71c"
+    },
+    {
+      "type": "part",
+      "des": "C2",
+      "x": 450,
+      "y": 60,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 450,
+          "y": 40
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 450,
+          "y": 80
+        }
+      ],
+      "value": "10µF",
+      "lcsc": "C15850",
+      "mpn": "CL21A106KAYNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "3ce9b0a13f4d81eb"
+    },
+    {
+      "type": "part",
+      "des": "L1",
+      "x": 520,
+      "y": 135,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 540,
+          "y": 135
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 500,
+          "y": 135
+        }
+      ],
+      "value": "2.2µH",
+      "lcsc": "C36500",
+      "mpn": "SWPA6045S2R2NT",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "1216690e64ff8218"
+    },
+    {
+      "type": "part",
+      "des": "C6",
+      "x": 400,
+      "y": 135,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 400,
+          "y": 155
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 400,
+          "y": 115
+        }
+      ],
+      "value": "100nF",
+      "lcsc": "C1591",
+      "mpn": "CL10B104KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5732dd7c4208e5e4"
+    },
+    {
+      "type": "part",
+      "des": "C4",
+      "x": 560,
+      "y": 160,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 560,
+          "y": 175
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 560,
+          "y": 145
+        }
+      ],
+      "value": "22µF",
+      "lcsc": "C12891",
+      "mpn": "CL31A226KAHNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "6337a44f0814378c"
+    },
+    {
+      "type": "part",
+      "des": "C5",
+      "x": 620,
+      "y": 160,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 620,
+          "y": 175
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 620,
+          "y": 145
+        }
+      ],
+      "value": "22µF",
+      "lcsc": "C12891",
+      "mpn": "CL31A226KAHNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "6337a44f0814378c"
+    },
+    {
+      "type": "part",
+      "des": "C3",
+      "x": 560,
+      "y": 215,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 560,
+          "y": 195
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 560,
+          "y": 235
+        }
+      ],
+      "value": "10µF",
+      "lcsc": "C15850",
+      "mpn": "CL21A106KAYNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "3ce9b0a13f4d81eb"
+    },
+    {
+      "type": "part",
+      "des": "R3",
+      "x": 470,
+      "y": 205,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 490,
+          "y": 205
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 450,
+          "y": 205
+        }
+      ],
+      "value": "120R",
+      "lcsc": "C17909",
+      "mpn": "1206W4F1200T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "506f2247c1e96925"
+    },
+    {
+      "type": "part",
+      "des": "C7",
+      "x": 410,
+      "y": 225,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 410,
+          "y": 245
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 410,
+          "y": 205
+        }
+      ],
+      "value": "100nF",
+      "lcsc": "C1591",
+      "mpn": "CL10B104KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5732dd7c4208e5e4"
+    },
+    {
+      "type": "part",
+      "des": "C8",
+      "x": 540,
+      "y": 235,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 540,
+          "y": 255
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 540,
+          "y": 215
+        }
+      ],
+      "value": "100nF",
+      "lcsc": "C1591",
+      "mpn": "CL10B104KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5732dd7c4208e5e4"
+    },
+    {
+      "type": "part",
+      "des": "D1",
+      "x": 620,
+      "y": 60,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "A",
+          "x": 640,
+          "y": 60
+        },
+        {
+          "num": "1",
+          "name": "K",
+          "x": 600,
+          "y": 60
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C8678",
+      "mpn": "SS34",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "d77011216d84444d"
+    },
+    {
+      "type": "part",
+      "des": "C1",
+      "x": 540,
+      "y": 60,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 540,
+          "y": 40
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 540,
+          "y": 80
+        }
+      ],
+      "value": "10µF",
+      "lcsc": "C15850",
+      "mpn": "CL21A106KAYNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "3ce9b0a13f4d81eb"
+    },
+    {
+      "type": "part",
+      "des": "U2",
+      "x": 1000,
+      "y": 520,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "SW",
+          "x": 950,
+          "y": 535
+        },
+        {
+          "num": "2",
+          "name": "EN",
+          "x": 950,
+          "y": 525
+        },
+        {
+          "num": "3",
+          "name": "COMP",
+          "x": 950,
+          "y": 515
+        },
+        {
+          "num": "4",
+          "name": "FB",
+          "x": 950,
+          "y": 505
+        },
+        {
+          "num": "5",
+          "name": "GND",
+          "x": 1050,
+          "y": 505
+        },
+        {
+          "num": "6",
+          "name": "FREQ",
+          "x": 1050,
+          "y": 515
+        },
+        {
+          "num": "7",
+          "name": "VIN",
+          "x": 1050,
+          "y": 525
+        },
+        {
+          "num": "8",
+          "name": "BST",
+          "x": 1050,
+          "y": 535
+        },
+        {
+          "num": "9",
+          "name": "EP",
+          "x": 1000,
+          "y": 485
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C15051",
+      "mpn": "MP1584EN-LF-Z",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "739bda57fb015890"
+    },
+    {
+      "type": "part",
+      "des": "L2",
+      "x": 850,
+      "y": 535,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 870,
+          "y": 535
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 830,
+          "y": 535
+        }
+      ],
+      "value": "4.7µH",
+      "lcsc": "C36417",
+      "mpn": "SWPA8040S4R7NT",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "e8939a02c1016c04"
+    },
+    {
+      "type": "part",
+      "des": "D2",
+      "x": 900,
+      "y": 480,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "A",
+          "x": 900,
+          "y": 460
+        },
+        {
+          "num": "1",
+          "name": "K",
+          "x": 900,
+          "y": 500
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C8678",
+      "mpn": "SS34",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "d77011216d84444d"
+    },
+    {
+      "type": "part",
+      "des": "D3",
+      "x": 1130,
+      "y": 580,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "A",
+          "x": 1150,
+          "y": 580
+        },
+        {
+          "num": "1",
+          "name": "K",
+          "x": 1110,
+          "y": 580
+        }
+      ],
+      "value": "={Manufacturer Part}",
+      "lcsc": "C81598",
+      "mpn": "1N4148W",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "ed10c96919669a12"
+    },
+    {
+      "type": "part",
+      "des": "C9",
+      "x": 1120,
+      "y": 510,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 1120,
+          "y": 525
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1120,
+          "y": 495
+        }
+      ],
+      "value": "22µF",
+      "lcsc": "C12891",
+      "mpn": "CL31A226KAHNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "6337a44f0814378c"
+    },
+    {
+      "type": "part",
+      "des": "C10",
+      "x": 1180,
+      "y": 510,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 1180,
+          "y": 525
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1180,
+          "y": 495
+        }
+      ],
+      "value": "22µF",
+      "lcsc": "C12891",
+      "mpn": "CL31A226KAHNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "6337a44f0814378c"
+    },
+    {
+      "type": "part",
+      "des": "C11",
+      "x": 800,
+      "y": 520,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 800,
+          "y": 535
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 800,
+          "y": 505
+        }
+      ],
+      "value": "22µF",
+      "lcsc": "C12891",
+      "mpn": "CL31A226KAHNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "6337a44f0814378c"
+    },
+    {
+      "type": "part",
+      "des": "C12",
+      "x": 760,
+      "y": 520,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 760,
+          "y": 535
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 760,
+          "y": 505
+        }
+      ],
+      "value": "22µF",
+      "lcsc": "C12891",
+      "mpn": "CL31A226KAHNNNE",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "6337a44f0814378c"
+    },
+    {
+      "type": "part",
+      "des": "C13",
+      "x": 1240,
+      "y": 505,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 1240,
+          "y": 525
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1240,
+          "y": 485
+        }
+      ],
+      "value": "100nF",
+      "lcsc": "C1591",
+      "mpn": "CL10B104KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5732dd7c4208e5e4"
+    },
+    {
+      "type": "part",
+      "des": "C14",
+      "x": 720,
+      "y": 515,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 720,
+          "y": 535
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 720,
+          "y": 495
+        }
+      ],
+      "value": "100nF",
+      "lcsc": "C1591",
+      "mpn": "CL10B104KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5732dd7c4208e5e4"
+    },
+    {
+      "type": "part",
+      "des": "C15",
+      "x": 1000,
+      "y": 580,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 980,
+          "y": 580
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1020,
+          "y": 580
+        }
+      ],
+      "value": "100nF",
+      "lcsc": "C1591",
+      "mpn": "CL10B104KB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "5732dd7c4208e5e4"
+    },
+    {
+      "type": "part",
+      "des": "C16",
+      "x": 840,
+      "y": 370,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "1",
+          "name": "1",
+          "x": 825,
+          "y": 370
+        },
+        {
+          "num": "2",
+          "name": "2",
+          "x": 855,
+          "y": 370
+        }
+      ],
+      "value": "220pF",
+      "lcsc": "C27675",
+      "mpn": "CL10C221JB8NNNC",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "099c487bc131703b"
+    },
+    {
+      "type": "part",
+      "des": "R7",
+      "x": 900,
+      "y": 450,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 920,
+          "y": 450
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 880,
+          "y": 450
+        }
+      ],
+      "value": "105k",
+      "lcsc": "C16840",
+      "mpn": "0603WAF1053T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "b93d683fb56ec48b"
+    },
+    {
+      "type": "part",
+      "des": "R8",
+      "x": 900,
+      "y": 410,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 920,
+          "y": 410
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 880,
+          "y": 410
+        }
+      ],
+      "value": "20k",
+      "lcsc": "C4184",
+      "mpn": "0603WAF2002T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "ee7c60e0235bb6d9"
+    },
+    {
+      "type": "part",
+      "des": "R9",
+      "x": 900,
+      "y": 370,
+      "rot": 0,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 920,
+          "y": 370
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 880,
+          "y": 370
+        }
+      ],
+      "value": "100k",
+      "lcsc": "C25803",
+      "mpn": "0603WAF1003T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "2603efb531333164"
+    },
+    {
+      "type": "part",
+      "des": "R10",
+      "x": 1090,
+      "y": 470,
+      "rot": 270,
+      "mirror": false,
+      "net": null,
+      "pins": [
+        {
+          "num": "2",
+          "name": "2",
+          "x": 1090,
+          "y": 450
+        },
+        {
+          "num": "1",
+          "name": "1",
+          "x": 1090,
+          "y": 490
+        }
+      ],
+      "value": "200k",
+      "lcsc": "C25811",
+      "mpn": "0603WAF2003T5E",
+      "libUuid": "0819f05c4eef4c71ace90d822a990e87",
+      "symUuid": "9a158ea72cb2b46f"
+    }
+  ],
+  "netports": [
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1375,
+      "y": 870,
+      "rot": 180,
+      "mirror": false,
+      "net": "VBUS",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1375,
+          "y": 870
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1375,
+      "y": 860,
+      "rot": 180,
+      "mirror": false,
+      "net": "VBUS",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1375,
+          "y": 860
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1375,
+      "y": 830,
+      "rot": 180,
+      "mirror": false,
+      "net": "VIN_B",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1375,
+          "y": 830
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1515,
+      "y": 870,
+      "rot": 0,
+      "mirror": false,
+      "net": "V5V",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1515,
+          "y": 870
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1515,
+      "y": 860,
+      "rot": 0,
+      "mirror": false,
+      "net": "V5V",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1515,
+          "y": 860
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1515,
+      "y": 850,
+      "rot": 0,
+      "mirror": false,
+      "net": "VBAT",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1515,
+          "y": 850
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1515,
+      "y": 840,
+      "rot": 0,
+      "mirror": false,
+      "net": "VBAT",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1515,
+          "y": 840
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 90,
+      "y": 740,
+      "rot": 0,
+      "mirror": false,
+      "net": "PACK_P",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 90,
+          "y": 740
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 580,
+      "y": 740,
+      "rot": 180,
+      "mirror": false,
+      "net": "V5V",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 580,
+          "y": 740
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 165,
+      "y": 605,
+      "rot": 180,
+      "mirror": true,
+      "net": "PMIC_T",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 165,
+          "y": 605
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 485,
+      "y": 600,
+      "rot": 180,
+      "mirror": false,
+      "net": "PMIC_T",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 485,
+          "y": 600
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 310,
+      "y": 440,
+      "rot": 0,
+      "mirror": false,
+      "net": "PMIC_T",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 310,
+          "y": 440
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 580,
+      "y": 700,
+      "rot": 180,
+      "mirror": false,
+      "net": "SW_BTN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 580,
+          "y": 700
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 690,
+      "y": 60,
+      "rot": 0,
+      "mirror": false,
+      "net": "CHG_IN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 690,
+          "y": 60
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 690,
+      "y": 195,
+      "rot": 0,
+      "mirror": false,
+      "net": "BATT_P",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 690,
+          "y": 195
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 690,
+      "y": 205,
+      "rot": 0,
+      "mirror": false,
+      "net": "BATT_M",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 690,
+          "y": 205
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 690,
+      "y": 215,
+      "rot": 0,
+      "mirror": false,
+      "net": "BATT_N",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 690,
+          "y": 215
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 120,
+      "y": 175,
+      "rot": 0,
+      "mirror": false,
+      "net": "BAT_STAT",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 120,
+          "y": 175
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 120,
+      "y": 105,
+      "rot": 0,
+      "mirror": false,
+      "net": "CHG_VINF",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 120,
+          "y": 105
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 90,
+      "y": 670,
+      "rot": 0,
+      "mirror": false,
+      "net": "SW_BTN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 90,
+          "y": 670
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 120,
+      "y": 790,
+      "rot": 180,
+      "mirror": false,
+      "net": "VBAT",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 120,
+          "y": 790
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 700,
+      "y": 535,
+      "rot": 0,
+      "mirror": false,
+      "net": "V5V",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 700,
+          "y": 535
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 1350,
+      "y": 525,
+      "rot": 0,
+      "mirror": false,
+      "net": "SW_VIN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 1350,
+          "y": 525
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 700,
+      "y": 470,
+      "rot": 0,
+      "mirror": false,
+      "net": "PWR_EN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 700,
+          "y": 470
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 255,
+      "y": 670,
+      "rot": 270,
+      "mirror": false,
+      "net": "PWR_EN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 255,
+          "y": 670
+        }
+      ]
+    },
+    {
+      "type": "netport",
+      "des": null,
+      "x": 545,
+      "y": 445,
+      "rot": 270,
+      "mirror": false,
+      "net": "PWR_EN",
+      "pins": [
+        {
+          "num": "1",
+          "name": "IN",
+          "x": 545,
+          "y": 445
+        }
+      ]
+    }
+  ],
+  "netflags": [
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 255,
+      "y": 635,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 255,
+          "y": 635
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 165,
+      "y": 555,
+      "rot": 0,
+      "mirror": true,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 165,
+          "y": 555
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 230,
+      "y": 480,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 230,
+          "y": 480
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 345,
+      "y": 500,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 345,
+          "y": 500
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 325,
+      "y": 420,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 325,
+          "y": 420
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 350,
+      "y": 635,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 350,
+          "y": 635
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 470,
+      "y": 525,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 470,
+          "y": 525
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 545,
+      "y": 415,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 545,
+          "y": 415
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 30,
+      "y": 575,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 30,
+          "y": 575
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 560,
+      "y": 580,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 560,
+          "y": 580
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 420,
+      "y": 560,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 420,
+          "y": 560
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 70,
+      "y": 575,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 70,
+          "y": 575
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 200,
+      "y": 480,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 200,
+          "y": 480
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 375,
+      "y": 155,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 375,
+          "y": 155
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 300,
+      "y": 235,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 300,
+          "y": 235
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 540,
+      "y": 40,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 540,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 450,
+      "y": 40,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 450,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 560,
+      "y": 145,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 560,
+          "y": 145
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 620,
+      "y": 145,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 620,
+          "y": 145
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 560,
+      "y": 235,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 560,
+          "y": 235
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 410,
+      "y": 245,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 410,
+          "y": 245
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 540,
+      "y": 255,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 540,
+          "y": 255
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 150,
+      "y": 115,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 150,
+          "y": 115
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 150,
+      "y": 145,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 150,
+          "y": 145
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 150,
+      "y": 185,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 150,
+          "y": 185
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 80,
+      "y": 165,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 80,
+          "y": 165
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 1050,
+      "y": 505,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 1050,
+          "y": 505
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 1000,
+      "y": 485,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 1000,
+          "y": 485
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 1120,
+      "y": 495,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 1120,
+          "y": 495
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 1180,
+      "y": 495,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 1180,
+          "y": 495
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 1240,
+      "y": 485,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 1240,
+          "y": 485
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 1090,
+      "y": 450,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 1090,
+          "y": 450
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 900,
+      "y": 460,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 900,
+          "y": 460
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 800,
+      "y": 505,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 800,
+          "y": 505
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 760,
+      "y": 505,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 760,
+          "y": 505
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 720,
+      "y": 495,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 720,
+          "y": 495
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 880,
+      "y": 410,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 880,
+          "y": 410
+        }
+      ]
+    },
+    {
+      "type": "netflag",
+      "des": null,
+      "x": 825,
+      "y": 370,
+      "rot": 0,
+      "mirror": false,
+      "net": "GND",
+      "pins": [
+        {
+          "num": "1",
+          "name": "Pin1",
+          "x": 825,
+          "y": 370
+        }
+      ]
+    }
+  ],
+  "others": [
+    {
+      "type": "sheet",
+      "des": null,
+      "x": 0,
+      "y": 0,
+      "rot": 0,
+      "mirror": false,
+      "net": null
+    }
+  ],
+  "wires": [
+    {
+      "net": "",
+      "pts": [
+        [
+          1375,
+          860
+        ],
+        [
+          1375,
+          860
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          1375,
+          870
+        ],
+        [
+          1375,
+          870
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          1375,
+          830
+        ],
+        [
+          1375,
+          830
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          1515,
+          840
+        ],
+        [
+          1515,
+          840
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          1515,
+          850
+        ],
+        [
+          1515,
+          850
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          1515,
+          860
+        ],
+        [
+          1515,
+          860
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          1515,
+          870
+        ],
+        [
+          1515,
+          870
+        ]
+      ]
+    },
+    {
+      "net": "GND",
+      "pts": [
+        [
+          1405,
+          850
+        ],
+        [
+          1375,
+          850
+        ]
+      ]
+    },
+    {
+      "net": "GND",
+      "pts": [
+        [
+          1405,
+          880
+        ],
+        [
+          1375,
+          880
+        ]
+      ]
+    },
+    {
+      "net": "GND",
+      "pts": [
+        [
+          1485,
+          880
+        ],
+        [
+          1515,
+          880
+        ]
+      ]
+    },
+    {
+      "net": "GND",
+      "pts": [
+        [
+          1485,
+          830
+        ],
+        [
+          1515,
+          830
+        ]
+      ]
+    },
+    {
+      "net": "PACK_P",
+      "pts": [
+        [
+          200,
+          740
+        ],
+        [
+          100,
+          740
+        ],
+        [
+          200,
+          740
+        ],
+        [
+          200,
+          720
+        ],
+        [
+          100,
+          720
+        ],
+        [
+          100,
+          740
+        ],
+        [
+          100,
+          740
+        ],
+        [
+          90,
+          740
+        ]
+      ]
+    },
+    {
+      "net": "PMIC_H",
+      "pts": [
+        [
+          325,
+          460
+        ],
+        [
+          325,
+          520
+        ],
+        [
+          325,
+          460
+        ],
+        [
+          305,
+          460
+        ],
+        [
+          305,
+          460
+        ],
+        [
+          305,
+          555
+        ],
+        [
+          230,
+          555
+        ],
+        [
+          305,
+          555
+        ],
+        [
+          230,
+          555
+        ],
+        [
+          230,
+          530
+        ],
+        [
+          305,
+          555
+        ],
+        [
+          305,
+          675
+        ],
+        [
+          305,
+          675
+        ],
+        [
+          305,
+          680
+        ],
+        [
+          305,
+          675
+        ],
+        [
+          350,
+          675
+        ]
+      ]
+    },
+    {
+      "net": "SW_BTN",
+      "pts": [
+        [
+          580,
+          700
+        ],
+        [
+          540,
+          700
+        ]
+      ]
+    },
+    {
+      "net": "PMIC_T",
+      "pts": [
+        [
+          470,
+          555
+        ],
+        [
+          470,
+          600
+        ],
+        [
+          420,
+          600
+        ],
+        [
+          470,
+          600
+        ],
+        [
+          470,
+          600
+        ],
+        [
+          485,
+          600
+        ]
+      ]
+    },
+    {
+      "net": "PMIC_T",
+      "pts": [
+        [
+          165,
+          595
+        ],
+        [
+          165,
+          605
+        ]
+      ]
+    },
+    {
+      "net": "PMIC_T",
+      "pts": [
+        [
+          305,
+          440
+        ],
+        [
+          310,
+          440
+        ]
+      ]
+    },
+    {
+      "net": "V5V",
+      "pts": [
+        [
+          580,
+          740
+        ],
+        [
+          560,
+          740
+        ],
+        [
+          560,
+          740
+        ],
+        [
+          560,
+          680
+        ],
+        [
+          470,
+          740
+        ],
+        [
+          560,
+          740
+        ],
+        [
+          470,
+          740
+        ],
+        [
+          470,
+          720
+        ],
+        [
+          470,
+          740
+        ],
+        [
+          305,
+          740
+        ],
+        [
+          305,
+          720
+        ],
+        [
+          305,
+          740
+        ]
+      ]
+    },
+    {
+      "net": "TMR_CHG",
+      "pts": [
+        [
+          470,
+          640
+        ],
+        [
+          470,
+          680
+        ]
+      ]
+    },
+    {
+      "net": "LED_A",
+      "pts": [
+        [
+          560,
+          620
+        ],
+        [
+          560,
+          640
+        ]
+      ]
+    },
+    {
+      "net": "CHG_NTC",
+      "pts": [
+        [
+          190,
+          185
+        ],
+        [
+          225,
+          185
+        ]
+      ]
+    },
+    {
+      "net": "CHG_UVSET",
+      "pts": [
+        [
+          190,
+          145
+        ],
+        [
+          225,
+          145
+        ]
+      ]
+    },
+    {
+      "net": "CHG_ISET",
+      "pts": [
+        [
+          190,
+          115
+        ],
+        [
+          225,
+          115
+        ]
+      ]
+    },
+    {
+      "net": "CHG_LED",
+      "pts": [
+        [
+          190,
+          165
+        ],
+        [
+          225,
+          165
+        ]
+      ]
+    },
+    {
+      "net": "CHG_LEDA",
+      "pts": [
+        [
+          120,
+          165
+        ],
+        [
+          150,
+          165
+        ]
+      ]
+    },
+    {
+      "net": "CHG_VINF",
+      "pts": [
+        [
+          120,
+          105
+        ],
+        [
+          225,
+          105
+        ]
+      ]
+    },
+    {
+      "net": "BAT_STAT",
+      "pts": [
+        [
+          120,
+          175
+        ],
+        [
+          225,
+          175
+        ]
+      ]
+    },
+    {
+      "net": "CHG_VINF",
+      "pts": [
+        [
+          430,
+          105
+        ],
+        [
+          400,
+          105
+        ],
+        [
+          400,
+          105
+        ],
+        [
+          400,
+          80
+        ],
+        [
+          400,
+          80
+        ],
+        [
+          450,
+          80
+        ],
+        [
+          375,
+          105
+        ],
+        [
+          400,
+          105
+        ]
+      ]
+    },
+    {
+      "net": "CHG_VIN",
+      "pts": [
+        [
+          600,
+          105
+        ],
+        [
+          570,
+          105
+        ],
+        [
+          570,
+          105
+        ],
+        [
+          570,
+          135
+        ],
+        [
+          570,
+          135
+        ],
+        [
+          540,
+          135
+        ],
+        [
+          570,
+          105
+        ],
+        [
+          540,
+          105
+        ],
+        [
+          540,
+          105
+        ],
+        [
+          540,
+          80
+        ],
+        [
+          470,
+          105
+        ],
+        [
+          540,
+          105
+        ],
+        [
+          600,
+          105
+        ],
+        [
+          600,
+          60
+        ]
+      ]
+    },
+    {
+      "net": "CHG_IN",
+      "pts": [
+        [
+          690,
+          60
+        ],
+        [
+          640,
+          60
+        ]
+      ]
+    },
+    {
+      "net": "CHG_LX",
+      "pts": [
+        [
+          375,
+          145
+        ],
+        [
+          375,
+          135
+        ],
+        [
+          375,
+          125
+        ],
+        [
+          375,
+          135
+        ],
+        [
+          375,
+          135
+        ],
+        [
+          420,
+          135
+        ],
+        [
+          420,
+          135
+        ],
+        [
+          420,
+          155
+        ],
+        [
+          420,
+          155
+        ],
+        [
+          400,
+          155
+        ],
+        [
+          500,
+          135
+        ],
+        [
+          420,
+          135
+        ]
+      ]
+    },
+    {
+      "net": "CHG_BST",
+      "pts": [
+        [
+          400,
+          115
+        ],
+        [
+          375,
+          115
+        ]
+      ]
+    },
+    {
+      "net": "CHG_VSYS",
+      "pts": [
+        [
+          375,
+          175
+        ],
+        [
+          375,
+          165
+        ],
+        [
+          375,
+          175
+        ],
+        [
+          560,
+          175
+        ],
+        [
+          620,
+          175
+        ],
+        [
+          560,
+          175
+        ]
+      ]
+    },
+    {
+      "net": "BATT_P",
+      "pts": [
+        [
+          375,
+          195
+        ],
+        [
+          375,
+          185
+        ],
+        [
+          375,
+          195
+        ],
+        [
+          560,
+          195
+        ],
+        [
+          690,
+          195
+        ],
+        [
+          560,
+          195
+        ]
+      ]
+    },
+    {
+      "net": "CHG_VBATM",
+      "pts": [
+        [
+          450,
+          205
+        ],
+        [
+          410,
+          205
+        ],
+        [
+          375,
+          205
+        ],
+        [
+          410,
+          205
+        ]
+      ]
+    },
+    {
+      "net": "BATT_M",
+      "pts": [
+        [
+          690,
+          205
+        ],
+        [
+          490,
+          205
+        ]
+      ]
+    },
+    {
+      "net": "BATT_N",
+      "pts": [
+        [
+          690,
+          215
+        ],
+        [
+          540,
+          215
+        ],
+        [
+          375,
+          215
+        ],
+        [
+          540,
+          215
+        ]
+      ]
+    },
+    {
+      "net": "SW_BTN",
+      "pts": [
+        [
+          70,
+          645
+        ],
+        [
+          70,
+          615
+        ],
+        [
+          70,
+          615
+        ],
+        [
+          30,
+          615
+        ],
+        [
+          70,
+          610
+        ],
+        [
+          70,
+          615
+        ],
+        [
+          100,
+          645
+        ],
+        [
+          70,
+          645
+        ],
+        [
+          100,
+          645
+        ],
+        [
+          130,
+          645
+        ],
+        [
+          100,
+          670
+        ],
+        [
+          100,
+          645
+        ],
+        [
+          100,
+          670
+        ],
+        [
+          90,
+          670
+        ],
+        [
+          100,
+          680
+        ],
+        [
+          100,
+          670
+        ]
+      ]
+    },
+    {
+      "net": "SW_VIN",
+      "pts": [
+        [
+          1350,
+          525
+        ],
+        [
+          1240,
+          525
+        ],
+        [
+          1180,
+          525
+        ],
+        [
+          1240,
+          525
+        ],
+        [
+          1120,
+          525
+        ],
+        [
+          1180,
+          525
+        ],
+        [
+          1050,
+          525
+        ],
+        [
+          1120,
+          525
+        ]
+      ]
+    },
+    {
+      "net": "DC_FREQ",
+      "pts": [
+        [
+          1090,
+          515
+        ],
+        [
+          1050,
+          515
+        ],
+        [
+          1090,
+          490
+        ],
+        [
+          1090,
+          515
+        ]
+      ]
+    },
+    {
+      "net": "DC_BST",
+      "pts": [
+        [
+          1050,
+          580
+        ],
+        [
+          1050,
+          535
+        ],
+        [
+          1020,
+          580
+        ],
+        [
+          1050,
+          580
+        ],
+        [
+          1050,
+          580
+        ],
+        [
+          1110,
+          580
+        ]
+      ]
+    },
+    {
+      "net": "DC_SW",
+      "pts": [
+        [
+          950,
+          580
+        ],
+        [
+          980,
+          580
+        ],
+        [
+          950,
+          535
+        ],
+        [
+          950,
+          580
+        ],
+        [
+          950,
+          535
+        ],
+        [
+          900,
+          535
+        ],
+        [
+          900,
+          500
+        ],
+        [
+          900,
+          535
+        ],
+        [
+          870,
+          535
+        ],
+        [
+          900,
+          535
+        ]
+      ]
+    },
+    {
+      "net": "V5V",
+      "pts": [
+        [
+          700,
+          535
+        ],
+        [
+          720,
+          535
+        ],
+        [
+          760,
+          535
+        ],
+        [
+          720,
+          535
+        ],
+        [
+          800,
+          535
+        ],
+        [
+          760,
+          535
+        ],
+        [
+          800,
+          535
+        ],
+        [
+          820,
+          535
+        ],
+        [
+          820,
+          535
+        ],
+        [
+          820,
+          620
+        ],
+        [
+          820,
+          620
+        ],
+        [
+          1150,
+          620
+        ],
+        [
+          1150,
+          620
+        ],
+        [
+          1150,
+          580
+        ],
+        [
+          830,
+          535
+        ],
+        [
+          820,
+          535
+        ],
+        [
+          820,
+          535
+        ],
+        [
+          820,
+          450
+        ],
+        [
+          820,
+          450
+        ],
+        [
+          880,
+          450
+        ]
+      ]
+    },
+    {
+      "net": "DC_FB",
+      "pts": [
+        [
+          940,
+          450
+        ],
+        [
+          920,
+          450
+        ],
+        [
+          940,
+          505
+        ],
+        [
+          940,
+          450
+        ],
+        [
+          950,
+          505
+        ],
+        [
+          940,
+          505
+        ],
+        [
+          940,
+          450
+        ],
+        [
+          940,
+          410
+        ],
+        [
+          940,
+          410
+        ],
+        [
+          920,
+          410
+        ]
+      ]
+    },
+    {
+      "net": "DC_COMP",
+      "pts": [
+        [
+          930,
+          515
+        ],
+        [
+          950,
+          515
+        ],
+        [
+          930,
+          370
+        ],
+        [
+          930,
+          515
+        ],
+        [
+          920,
+          370
+        ],
+        [
+          930,
+          370
+        ]
+      ]
+    },
+    {
+      "net": "DC_COMPR",
+      "pts": [
+        [
+          855,
+          370
+        ],
+        [
+          880,
+          370
+        ]
+      ]
+    },
+    {
+      "net": "PWR_EN",
+      "pts": [
+        [
+          870,
+          525
+        ],
+        [
+          950,
+          525
+        ],
+        [
+          870,
+          470
+        ],
+        [
+          870,
+          525
+        ],
+        [
+          700,
+          470
+        ],
+        [
+          870,
+          470
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          255,
+          635
+        ],
+        [
+          255,
+          640
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          255,
+          670
+        ],
+        [
+          255,
+          680
+        ]
+      ]
+    },
+    {
+      "net": "PMIC_L",
+      "pts": [
+        [
+          200,
+          510
+        ],
+        [
+          200,
+          575
+        ],
+        [
+          195,
+          575
+        ],
+        [
+          200,
+          575
+        ],
+        [
+          200,
+          600
+        ],
+        [
+          200,
+          575
+        ],
+        [
+          200,
+          600
+        ],
+        [
+          345,
+          600
+        ],
+        [
+          345,
+          600
+        ],
+        [
+          345,
+          540
+        ],
+        [
+          200,
+          645
+        ],
+        [
+          200,
+          600
+        ],
+        [
+          200,
+          645
+        ],
+        [
+          170,
+          645
+        ],
+        [
+          200,
+          660
+        ],
+        [
+          200,
+          645
+        ],
+        [
+          200,
+          660
+        ],
+        [
+          225,
+          660
+        ],
+        [
+          200,
+          660
+        ],
+        [
+          200,
+          680
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          545,
+          445
+        ],
+        [
+          545,
+          445
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          545,
+          415
+        ],
+        [
+          545,
+          415
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          200,
+          480
+        ],
+        [
+          200,
+          480
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          230,
+          490
+        ],
+        [
+          230,
+          480
+        ]
+      ]
+    },
+    {
+      "net": "",
+      "pts": [
+        [
+          70,
+          580
+        ],
+        [
+          70,
+          575
+        ]
+      ]
+    }
+  ],
+  "rects": [
+    {
+      "x": 1325,
+      "yRead": -920,
+      "topY": 920,
+      "w": 250,
+      "h": 140,
+      "color": "#AA00AA",
+      "lineType": 1
+    },
+    {
+      "x": 690,
+      "yRead": -700,
+      "topY": 700,
+      "w": 710,
+      "h": 360,
+      "color": "#AA00AA",
+      "lineType": 1
+    },
+    {
+      "x": 17.5,
+      "yRead": -775,
+      "topY": 775,
+      "w": 612.5,
+      "h": 395,
+      "color": "#AA00AA",
+      "lineType": 1
+    },
+    {
+      "x": 15,
+      "yRead": -300,
+      "topY": 300,
+      "w": 685,
+      "h": 400,
+      "color": "#AA00AA",
+      "lineType": 1
+    },
+    {
+      "x": 720,
+      "yRead": -310,
+      "topY": 310,
+      "w": 660,
+      "h": 300,
+      "color": "#AA00AA",
+      "lineType": 1
+    }
+  ],
+  "texts": [
+    {
+      "content": "PMIC",
+      "x": 35,
+      "y": 785,
+      "size": 19.68503937007874,
+      "bold": false,
+      "rot": 0,
+      "align": 2
+    },
+    {
+      "content": "connector",
+      "x": 1330,
+      "y": 920,
+      "size": 19.68503937007874,
+      "bold": false,
+      "rot": 0,
+      "align": 2
+    },
+    {
+      "content": "PROBE",
+      "x": 1620,
+      "y": -120,
+      "size": 19.685,
+      "bold": false,
+      "rot": 0,
+      "align": 6
+    },
+    {
+      "content": "CHARGE (2S)",
+      "x": 30,
+      "y": 300,
+      "size": 19.68503937007874,
+      "bold": false,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "DCDC (5V/3A)",
+      "x": 705,
+      "y": 700,
+      "size": 19.68503937007874,
+      "bold": false,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "[1] CHARGE   U1=IP2326   5V -> 8.4V 昇圧充電   充電電流 0.99A (R4=91k)",
+      "x": 30,
+      "y": 10,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    充電電流の律速は IC (max 1.5A) ではなく AWG26 ハーネス (入力 ~1.83A)",
+      "x": 30,
+      "y": -4,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    NC ピンは意図的:  CON_SEL=開放 ->2S    VSET=NC ->CV 8.4V",
+      "x": 30,
+      "y": -18,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "                      VIN_OVSET=NC ->8.75V   TIME_SET=NC ->24h   DM,DP=Type-C 無し",
+      "x": 30,
+      "y": -32,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    R6=51k は NTC 未使用処理。これが無いと低温判定で充電が始まらない",
+      "x": 30,
+      "y": -46,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    R3=120R は RCB (セルバランス)。0R にすると内蔵 MOS がセルを短絡する",
+      "x": 30,
+      "y": -60,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    BATT_P/M/N は基板外の BMS (XR-2S-30A) を経由して PACK_P として戻る",
+      "x": 30,
+      "y": -74,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "[2] DCDC   U2=MP1584   8.4V -> 5.000V / 3A   fsw = 485kHz (R10=200k)",
+      "x": 705,
+      "y": 692,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    R7/R8 = 105k/20k -> 0.8V x 6.25 = 5.000V (無負荷ブリード 40uA)",
+      "x": 705,
+      "y": 678,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    D3 (1N4148W) は外付けブートストラップ。標準回路には無いが必須",
+      "x": 705,
+      "y": 664,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "      VOUT/VIN > 65% の高デューティのため。無いとゲート電圧不足で不安定になる",
+      "x": 705,
+      "y": 650,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    fsw を標準の 911kHz にすると最小オフ時間の制約で VIN<6.1V で 3A が出せない",
+      "x": 705,
+      "y": 636,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    EN は PWR_EN (PMIC ラッチ) が駆動。絶対最大 6V なので 2S 直結は禁止",
+      "x": 705,
+      "y": 622,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    入力 SW_VIN は PACK_P 由来。ビーズ/0R は未実装 (docs/04 Q2)",
+      "x": 705,
+      "y": 608,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "[3] PMIC   ディスクリートラッチ   押下 130ms = ON  /  長押し 1.5s = OFF",
+      "x": 35,
+      "y": 414,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    PMIC_L :  H = 電源 OFF (Q1 が PWR_EN を GND へ)  /  L = 電源 ON",
+      "x": 35,
+      "y": 400,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    (1) 電池挿入時: R11(2.2M) が PMIC_L=H にするので必ず OFF から始まる",
+      "x": 35,
+      "y": 386,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    (2) 押下: PMIC_L=L -> V5V 立つ -> R12/C17 が PMIC_H 充電 -> 130ms で Q2 が自己保持",
+      "x": 35,
+      "y": 372,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    (3) 長押し: Q4 が R13/C18 で PMIC_T 充電 -> 1.5s で Q3 が PMIC_H を潰す -> OFF",
+      "x": 35,
+      "y": 358,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    (4) Q5/Q6 は OFF 中に PMIC_T / PMIC_H を GND 固定 (タイマと保持のリセット)",
+      "x": 35,
+      "y": 344,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "    D4/R16/R17/C21 はボタン線の ESD 対策。C20 は EN のノイズ対策",
+      "x": 35,
+      "y": 330,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "SYSTEM / NET MAP",
+      "x": 735,
+      "y": 310,
+      "size": 19.68503937007874,
+      "bold": false,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "2S 電源基板 (40x40mm 4層)   ブロック間の接続は NET_PORT のみ",
+      "x": 735,
+      "y": 290,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "CHG_IN  --> [1] CHARGE  U1 IP2326  --> BATT_P / BATT_M / BATT_N",
+      "x": 735,
+      "y": 262,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "                                          |",
+      "x": 735,
+      "y": 248,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "   ** BATT_* は基板上では PACK_P と繋がっていない **",
+      "x": 735,
+      "y": 234,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "   基板外の BMS (XR-2S-30A) を経由し、保護後に PACK_P として戻る",
+      "x": 735,
+      "y": 220,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "                                          v",
+      "x": 735,
+      "y": 206,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "PACK_P --> SW_VIN --> [2] DCDC  U2 MP1584 --> V5V  (5V / 3A)",
+      "x": 735,
+      "y": 192,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "PACK_P --> [3] PMIC ラッチ --> PWR_EN --> U2.EN で 5V を ON/OFF",
+      "x": 735,
+      "y": 178,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "SW_BTN   : 押しボタン (基板外)。TVS D4 は基板側",
+      "x": 735,
+      "y": 150,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "BAT_STAT : IP2326 の充電状態出力 (パッド予約のみ)",
+      "x": 735,
+      "y": 136,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "GND      : netflag (Ground-GND) を各ピンに直置き。ワイヤは引かない",
+      "x": 735,
+      "y": 122,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "内部ノードは CHG_ / DC_ / PMIC_ 接頭辞。接頭辞なしがブロック間バス",
+      "x": 735,
+      "y": 94,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    },
+    {
+      "content": "コネクタ (CN5/CN6 ほか) とテストポイントは未配置",
+      "x": 735,
+      "y": 80,
+      "size": 10,
+      "bold": true,
+      "rot": 0,
+      "align": 4
+    }
+  ],
+  "counts": {
+    "parts": 57,
+    "netports": 26,
+    "netflags": 38,
+    "wires": 55,
+    "rects": 5,
+    "texts": 40
+  }
+}
