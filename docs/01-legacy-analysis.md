@@ -89,7 +89,35 @@ VOUT ──> [Q2 DMG3415 P-FET] ──> VOUT_SWITCHED ──> J9 "OUTPUT"
 
 - `BATT_M` は **M = Middle (中点)**、`BATT_N` は **N = Negative (下端)**。紛らわしいので混同しないこと。
 - 廃止ネット (`VOUT_SWITCHED` / `GATE` / `CLR` / `OUT`) は §5 参照。
-- 新規ネットの名前は EN 制御・ラッチ確定後に本表へ追記する ([`docs/06`](06-power-switch.md))。
+
+### 3.2 新規ネット (2026-08-11 作図時に確定)
+
+**CHARGE ブロック** ([`docs/02`](02-ip2326-module.md)):
+
+| ネット | 意味 |
+| --- | --- |
+| `CHG_VINF` | IP2326 の **VIN ピン**側 (R14 = 1 Ω フィルタ後)。**EN もここに接続**して常時イネーブルにする |
+| `CHG_LX` | 昇圧スイッチノード (LX ピン ×3 ↔ L10 ↔ BST コンデンサ) |
+| `CHG_BST` | BST ピン (LX との間に 0.1 µF) |
+| `CHG_VSYS` | 昇圧中間ノード (VSYS ピン ×2 に 22 µF ×2) |
+| `CHG_VBATM` | **VBATM ピン側** (RCB = R16 の手前)。RCB の先が `BATT_M` |
+| `CHG_ISET` / `CHG_UVSET` / `CHG_NTC` | 設定抵抗 (91 k / 68 k / 51 k) → GND |
+| `CHG_LED` / `CHG_LEDA` | 充電表示 LED (LED ピン → R15 → D11 → GND) |
+| `BAT_STAT` | IP2326 の充電状態出力。**パッド予約のみ** (NET_PORT) |
+
+**PMIC ブロック** ([`docs/06`](06-power-switch.md) §3.6):
+
+| ネット | 意味 |
+| --- | --- |
+| `PMIC_L` | ラッチノード。H = 電源 OFF / L = 電源 ON |
+| `PMIC_H` | 自己保持ノード (Q31 のベース)。~0.7 V にクランプ |
+| `PMIC_T` | オフタイマノード (Q32 のベース) |
+| `SW_BTN` | 押しボタン線 (基板外)。TVS は基板側 |
+| `PWR_EN` | MP1584 の EN へ |
+| `TMR_CHG` / `BTN_G` / `LED_A` | オフタイマ充電経路 / Q33 ゲート / 電源 ON LED |
+
+⚠️ **内部ノードは `CHG_` / `PMIC_` 接頭辞を付ける** — NET_PORT の一覧で
+システムバス (`PACK_P` / `V5V` / `BATT_*` / `CHG_IN` / `PWR_EN` / `SW_BTN`) と区別するため。
 
 ## 4. コネクタ: legacy 11 個 → 新基板は最小構成へ削減 (2026-08-10 決定)
 
