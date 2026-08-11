@@ -97,7 +97,8 @@
 | 06 | [`docs/06-power-switch.md`](docs/06-power-switch.md) | 電源 ON/OFF 回路 (**ホール素子 + 常時オン LDO + D-FF + EN 直結**) の設計。旧ディスクリートラッチは §8 付録に廃止記録 |
 | 07 | [`docs/07-easyeda-schematic-rules.md`](docs/07-easyeda-schematic-rules.md) | **EasyEDA 作図規約 + API 制約** (モジュール枠 / NET_PORT / 座標単位) |
 | 08 | [`docs/08-north-status-window.md`](docs/08-north-status-window.md) | **北極ステータス窓の作業指示書 (handoff)** — ホール素子 + 状態表示 LED + 再生開始で消灯。**別セッションが単独で着手できる形で書いてある。着手前に §7 の判断 5 件を解消すること** |
-| 09 | [`docs/09-system-structure.md`](docs/09-system-structure.md) | **システム構造とボード間インターフェース** — 基板 6 種の一覧・全体ブロック図・電源ドメイン・信号の取り合い・電源 ON/OFF の全体シーケンス |
+| 09 | [`docs/09-system-structure.md`](docs/09-system-structure.md) | **システム構造とボード間インターフェース** — 基板 6 種の一覧・全体ブロック図・電源ドメイン・信号の取り合い・電源 ON/OFF の全体シーケンス。**§0.5 に mother-ring / core の実ネットリスト解析、§0.6 に確定した設計判断** |
+| 10 | [`docs/10-ring-core-revision.md`](docs/10-ring-core-revision.md) | **mother-ring / core 基板の改版指示書** — 追加部品・ピン再定義・チェックリスト。**core は物理変更不要、ring は中規模改版** |
 
 ## 5. Repository Layout / フォルダ構成と同期
 
