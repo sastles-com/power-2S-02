@@ -387,6 +387,50 @@ await eda.sch_PrimitiveComponent.create(devs[0], x, y);                   // そ
 | `delete(primitiveId)` | `true` を返し、`getAll()` から消える |
 | **部品の Y 座標** | **テキストと同じ正の座標系**。矩形だけが反転する (§2) |
 
+#### ⚠️ `modify()` は**省略したフィールドを壊す** (2026-08-11 実測、事故った)
+
+`modify(pid, {designator:'R34', name:'1M'})` を呼んだところ、
+**`supplierId` が `C22935` から `0603WAF1004T5E.1` (= MPN + ".1") に化けた。**
+21 部品すべてで LCSC 番号が失われ、Hard Rule (全部品に LCSC 番号) 違反の状態になった。
+
+```javascript
+// ✗ supplierId が壊れる
+await eda.sch_PrimitiveComponent.modify(pid, {designator:'R34', name:'1M'});
+
+// ○ 触らないフィールドも明示的に渡す
+await eda.sch_PrimitiveComponent.modify(pid, {designator:'R34', name:'1M',
+                                              supplier:'LCSC', supplierId:'C22935'});
+```
+
+**`modify()` を呼ぶときは必ず `supplier` / `supplierId` を一緒に渡す。**
+回転だけ直す場合も同じ (実際に 2 回目の modify で再び壊した)。
+作業後は `eda-schematic-dump` の `missingLcsc` で必ず検証する。
+
+#### ⚠️ 回転の符号: `create()` は反転するが `modify()` は反転しない (2026-08-11 実測)
+
+| 呼び方 | 渡した値 | 実効 (= `getState_Rotation()`) |
+| --- | --- | --- |
+| `create(dev, x, y, undefined, **90**)` | 90 | **270** |
+| `create(dev, x, y, undefined, **270**)` | 270 | **90** |
+| `modify(pid, {rotation: **270**})` | 270 | **270** |
+
+**`create()` は Y 座標と同じく回転も反転する** (渡した R → 実効 `360 − R`)。
+`modify()` は反転しない。極性部品 (ダイオード / LED / TVS) で向きを間違える直接の原因になる。
+**配置後に必ず `getAllPinsByPrimitiveId()` でピンの実座標を読んで向きを確認する。**
+
+実例: TVS (SMF12A) をカソード上向きにしたい (実効 270 が必要) 場合 —
+`create()` なら **90** を渡す / `modify()` なら **270** を渡す。
+
+#### ⚠️ ブリッジがタイムアウトしても EDA 側のスクリプトは走り続ける
+
+**30 秒でブリッジが諦めても、EDA 内のスクリプトは完走する。** (2026-08-11 実測)
+21 部品の配置スクリプトがタイムアウトしたが、実際には NET_PORT の作成まで完了しており、
+再実行したことで **NET_PORT が二重に作られた** (削除して復旧)。
+
+- **タイムアウトしたら必ず別リクエストで状態を確認する。** 「失敗した」と決めつけて再実行しない
+- **1 スクリプトは 30 API 呼び出し程度に分割する。**
+  実測: `21 create + 21 modify + 1 getByLcscIds = 43 呼び出し`で 30 秒超過
+
 #### Designator と値の設定は `modify()`
 
 ```javascript
