@@ -154,6 +154,28 @@ ERC (`sch_Drc.check`) も**件数しか返さない**。そのため
 
 旧 2P 版の注釈 (`[5] Boost 5V/3A - TPS61088…`) と size-5 の `GND`/`VBAT` ラベルは削除済み。
 
+### KiCad バックアップ (2026-08-11)
+
+**設計データはクラウドのみ (CLAUDE.md §5) だったので、テキスト形式のスナップショットを
+リポジトリに置けるようにした。** 手順と限界は [`kicad/README.md`](kicad/README.md)。
+
+```bash
+.claude/skills/eda-connect/scripts/eda-exec.sh tools/eda-dump-full.js > tools/schematic-dump.json
+python3 tools/eda2kicad.py   tools/schematic-dump.json kicad/power-2S-02.kicad_sch
+python3 tools/verify_kicad.py tools/schematic-dump.json kicad/power-2S-02.kicad_sch   # ← 毎回これを確認
+```
+
+**検証: 部品ピン 154 / ネット 48 が EasyEDA と完全一致** ✅
+(両方を同じ幾何ルールで解いてネット分割を比較。**KiCad を起動せずに確認できる**)
+
+- 形式は **KiCad 10** (`version 20260306`)。`legacy/power-2S.kicad_sch` を構文リファレンスにした
+- **単一シート**で維持する (2026-08-11 決定)。ブロックは破線の枠で区切る。
+  分割が要るのは A4 印刷が必要になった場合。グローバルラベルはシートを跨いで
+  機能するので後から分割しても現状のラベルがそのまま使える
+- UUID は決定論的なので**同じ入力なら同じ出力** = git の差分が安定する
+- ⚠️ **フットプリント未割り当て / ERC 用 PWR_FLAG なし** — このままでは PCB は作れない。
+  バックアップ目的と割り切っている
+
 ### 残っている作図タスク
 
 - [ ] **CN5 / CN6 とコネクタ系** — **ユーザー担当** (2026-08-11)
