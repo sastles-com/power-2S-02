@@ -89,6 +89,7 @@
 | 05 | [`docs/05-jlcpcb-fab.md`](docs/05-jlcpcb-fab.md) | JLCPCB 発注フロー (EasyEDA 直発注)・BOM 仕様・LCSC 部品選定ルール |
 | 06 | [`docs/06-power-switch.md`](docs/06-power-switch.md) | 電源 ON/OFF 回路 (ディスクリートラッチ + EN 制御) の設計 |
 | 07 | [`docs/07-easyeda-schematic-rules.md`](docs/07-easyeda-schematic-rules.md) | **EasyEDA 作図規約 + API 制約** (モジュール枠 / NET_PORT / 座標単位) |
+| 08 | [`docs/08-north-status-window.md`](docs/08-north-status-window.md) | **北極ステータス窓の作業指示書 (handoff)** — ホール素子 + 状態表示 LED + 再生開始で消灯。**別セッションが単独で着手できる形で書いてある。着手前に §7 の判断 5 件を解消すること** |
 
 ## 5. Repository Layout / フォルダ構成と同期
 
