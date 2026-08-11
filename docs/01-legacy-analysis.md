@@ -116,7 +116,17 @@ VOUT ──> [Q2 DMG3415 P-FET] ──> VOUT_SWITCHED ──> J9 "OUTPUT"
 | `PWR_EN` | MP1584 の EN へ |
 | `TMR_CHG` / `BTN_G` / `LED_A` | オフタイマ充電経路 / Q33 ゲート / 電源 ON LED |
 
-⚠️ **内部ノードは `CHG_` / `PMIC_` 接頭辞を付ける** — NET_PORT の一覧で
+**DCDC ブロック** ([`docs/03`](03-mp1584-module.md)):
+
+| ネット | 意味 |
+| --- | --- |
+| `DC_SW` | スイッチノード (SW ピン ↔ L20 ↔ D20 キャッチ ↔ BST コンデンサ) |
+| `DC_BST` | BST ピン。C26 (100 nF) と **D21 (外付け BST ダイオード)** が付く |
+| `DC_FB` | FB ピン (R20 105 k / R21 20 k の分圧点) |
+| `DC_COMP` / `DC_COMPR` | 補償ネットワーク (COMP → R22 100 k → C27 220 pF → GND の直列 RC) |
+| `DC_FREQ` | FREQ ピン → R23 (200 kΩ) → GND。fsw ≈ 485 kHz |
+
+⚠️ **内部ノードは `CHG_` / `PMIC_` / `DC_` 接頭辞を付ける** — NET_PORT の一覧で
 システムバス (`PACK_P` / `V5V` / `BATT_*` / `CHG_IN` / `PWR_EN` / `SW_BTN`) と区別するため。
 
 ## 4. コネクタ: legacy 11 個 → 新基板は最小構成へ削減 (2026-08-10 決定)
