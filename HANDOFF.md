@@ -395,9 +395,23 @@ python3 tools/verify_kicad.py tools/schematic-dump.json kicad/power-2S-02.kicad_
 ⚠️ **電源スイッチは 2026-08-11 に方式を全面改訂したため、ブロッカーが 2 件再オープンした** (下記)。
 方式・回路・定数そのものは [`docs/06`](docs/06-power-switch.md) §4 で確定している。
 
-**⚠️ 回路設計をブロックする残ブロッカー 3 件 (方式改訂で新たに発生):**
+**⚠️ 回路設計をブロックする残ブロッカー 2 件 (方式改訂で新たに発生):**
 
-- **③ (NEW 2026-08-11) PMIC 出力段の topology — [`docs/08`](docs/08-north-status-window.md) の内部矛盾を解消する必要がある。**
+- ~~**③ PMIC 出力段の topology — docs/08 の内部矛盾**~~ → **✅ 解決 (2026-08-11)。**
+  **原因は「IP2326 pin 6 はシンク」という誤った前提**だった。
+  **データシート Figure 5 (p.16) を画像でレンダリングして確認した結果、pin 6 は「ソース」**
+  (`pin6 → R2 100Ω → LED → GND`)。これで §4.3 ④ の**ソース行**が採用行になり矛盾は消える。
+  - **LED は共通カソード `LED_K`**。`LED_VCC` は廃止
+  - **veto = `2N7002` 1 個 + 100 kΩ プルアップ = 2 点**。P-MOS + PNP 反転段は不要
+  - **電源 ON LED は MOSFET 不要** — `74LVC1G74` の Q (±24 mA 駆動) から直接吐かせる
+  - **充電 LED の抵抗は 100 Ω (メーカー指定値) に戻す** — pin 6 の出力電圧が未規定なので独自計算不可
+  - ⚠️ **KiCad の北極回路図は LED の向きを反転する改版が必要** (共通アノード → 共通カソード)
+  - **電源基板から `LED1` / `R2` を削除済み** — 重複 + pin 6 の 5 mA では 2 灯を点けられない。
+    pin 6 は netport **`CHG_LED`** として `CN7` へ渡す
+
+<details><summary>解決前の記述 (経緯の記録)</summary>
+
+- **③ (2026-08-11) PMIC 出力段の topology — [`docs/08`](docs/08-north-status-window.md) の内部矛盾を解消する必要がある。**
   **`docs/08` §4.3 ④ と §4.4b が食い違っている:**
   - §4.3 ④ は「IP2326 pin 6 は**シンク** → LED は共通アノード `LED_VCC` → veto 素子は **P-MOS** →
     PCA9632 では P-MOS ゲートを持ち上げられないので **PNP 反転段が必要 (計 5 点)**」と書いている
@@ -409,6 +423,8 @@ python3 tools/verify_kicad.py tools/schematic-dump.json kicad/power-2S-02.kicad_
     → **2N7002 × 3 + 抵抗 2 本 = 5 点**、すべて低側スイッチで PNP 反転段が不要、しきい値の不確かさに依存しない
   - ⚠️ この案を採ると **`docs/08` の「`V3P3` と `LED_VCC` を共用してはならない」という警告は前提が変わって無効になる**
     (veto がレールを切らなくなるため、ホール素子が veto の影響を受ける経路が存在しない)
+
+</details>
 
 - **[`docs/06`](docs/06-power-switch.md) §7 Q12: 「充電端子装着で強制 ON」を採用するか。**
   [`docs/09`](docs/09-system-structure.md) §5 手順 7 が D-FF の PRE (SET) に充電検出を割り当てているが、
