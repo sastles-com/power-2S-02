@@ -312,11 +312,21 @@ python3 tools/verify_kicad.py tools/schematic-dump.json kicad/power-2S-02.kicad_
 
 ### 残っている作図タスク
 
-- [ ] **★PMIC 出力段 (ステータス LED 駆動 + veto)** — **topology がユーザー判断待ち** (下記ブロッカー ③)
-- [ ] **★デバッグ SW 2 個** (`S#D` = 強制 ON / `R#D` = 強制 OFF) — 品番未確定 ([`docs/06`](docs/06-power-switch.md) §7 Q7)
-- [ ] **★`CN7` 北極 6 極コネクタ** — connector 枠に置く (機能ブロック内ではない)。品番未確定 (同 Q8)
-- [ ] **★`VETO` / `PWR_OFF` 入力に 1nF フィルタ** を追加 ([`docs/10`](docs/10-ring-core-revision.md))
-- [ ] `U4.1` (NC ピン) に NC フラグを立てる — 現在未接続で ERC に出る
+- [x] ~~**PMIC 出力段 (ステータス LED 駆動 + veto)**~~ **完了 (2026-08-11)** — `Q1` + `R23` 1M + `C28` 1nF
+- [x] ~~**`CN7` 北極コネクタ**~~ **完了 (2026-08-11)** — **north の `J1`/`J2` に合わせ 2 個に分割**:
+  - **`CN7` = 2P (`HX PZ2.0-1x2P TP-YQ` / `C41417341`)** — 1=`GND` / 2=`V3P3`
+  - **`CN8` = 4P (`HX PZ2.0-1x4P TP-YQ` / `C41417343`)** — 1=`LED_K` / 2=`HALL_OUT` / 3=`CHG_LED` / 4=`PWR_EN`
+  - **2.00 mm ピッチ**で north 側と統一。**ピン順も 1:1 なのでストレートハーネスで済む**
+  - ⚠️ 従来「`CN8` = core 基板コネクタ」としていた予定番号は **`CN9` 以降へ繰り下げ**
+- [x] ~~**`VETO` / `PWR_OFF` 入力に 1nF フィルタ**~~ **不要だった** — `C28` (1nF) と `C25` (10nF) が兼務している
+- [ ] **★テストポイント 6 個** (`V3P3` / `HALL_OUT` / `VETO` / `PWR_OFF` / `PWR_EN` / `LED_K`) — **配置中**。
+  部品は **`Test-Point` (フットプリント `Test-Point-0.5mm`、LCSC 番号なしの裸パッド)** を使い
+  **`addIntoBom = false` / `addIntoPcb = true`** にする。⚠️ **`CHG_LED` も追加するか要確認**
+- [ ] **★デバッグ SW 2 個** (`S#D` = 強制 ON / `R#D` = 強制 OFF) — 品番未確定 ([`docs/06`](docs/06-power-switch.md) §7 Q7)。**PMIC で唯一の回路上の残作業**
+- [ ] `U4.1` (NC ピン) に NC フラグを立てる — 現在未接続で ERC に出る。
+  **`setState_NoConnected()` は API から呼ぶと 30 秒でタイムアウトするので GUI 作業**
+- [ ] ⚠️ **`VETO` / `PWR_OFF` はどちらも「L でアサート」= アクティブ Low。名前が極性を表していない**
+  → `VETO_N` / `PWR_OFF_N` へのリネームを提案中 (ユーザー判断待ち。mother-ring と docs/09/10 に波及する)
 - [ ] **CN5 / CN6 とコネクタ系** — **ユーザー担当** (2026-08-11)
 - [ ] **`PACK_P` → `SW_VIN` の接続** (フェライトビーズ続投か 0 Ω か) — [`docs/04`](docs/04-layout-thermal.md) §7 Q2 が未確定
 - [ ] **ERC の fatal 内訳確認** — API では件数しか取れないので GUI の ERC パネルで見る
