@@ -344,6 +344,24 @@ await eda.sch_PrimitiveWire.getAll();        // getState_Net でネット名
 await eda.sch_PrimitiveComponent.getAll();   // getState_ComponentType: "part"|"netport"|"sheet"
 ```
 
+### GND / 電源記号は `createNetFlag()` (2026-08-11 実測)
+
+```javascript
+await eda.sch_PrimitiveComponent.createNetFlag('Ground', 'GND', x, y);   // → Ground-GND シンボル
+await eda.sch_PrimitiveComponent.createNetFlag('Power',  'V5V', x, y);   // → Power-5V シンボル
+// identification は 'Power' | 'Ground' | 'AnalogGround' | 'ProtectGround'
+```
+
+| 項目 | 実測値 |
+| --- | --- |
+| `ComponentType` | **`netflag`** (part / netport とは別種) |
+| GND シンボル | `Ground-GND` / uuid `d6cb921064447e46` / libraryUuid `0819f05c…` |
+| 電源シンボル | `Power-5V` / uuid `dad5364639ba3e4f` |
+| **ピン位置** | **配置座標そのもの** — 部品ピンの座標に直接置けば**ワイヤ 0 本で接続できる** |
+
+⚠️ **netflag は `delete()` に primitiveId 文字列を渡しても消えない** (`true` を返すのに残る)。
+**`getAll()` で取得したオブジェクトを渡すこと。** 削除の確認は必ず別リクエストで行う。
+
 ### 部品を LCSC 番号から配置する (2026-08-11 経路確立)
 
 **`lib_Device.getByLcscIds()` の戻り値を `sch_PrimitiveComponent.create()` にそのまま渡せる。**
