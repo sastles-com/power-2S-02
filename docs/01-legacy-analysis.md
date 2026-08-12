@@ -103,7 +103,7 @@ VOUT ──> [Q2 DMG3415 P-FET] ──> VOUT_SWITCHED ──> J9 "OUTPUT"
 | `CHG_VBATM` | **VBATM ピン側** (RCB = R16 の手前)。RCB の先が `BATT_M` |
 | `CHG_ISET` / `CHG_UVSET` / `CHG_NTC` | 設定抵抗 (91 k / 68 k / 51 k) → GND |
 | `CHG_LED` / `CHG_LEDA` | 充電表示 LED (LED ピン → R15 → D11 → GND) |
-| `BAT_STAT` | IP2326 の充電状態出力。**パッド予約のみ** (NET_PORT) |
+| ~~`BAT_STAT`~~ | **廃止 (2026-08-12)** — 情報価値が無いため未使用 NC に ([`docs/02`](02-ip2326-module.md) §3.5a) |
 
 **PMIC ブロック** ([`docs/06`](06-power-switch.md) §3.6):
 
