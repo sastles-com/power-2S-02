@@ -1,5 +1,7 @@
 const comps = await eda.sch_PrimitiveComponent.getAll() || [];
 const wires = await eda.sch_PrimitiveWire.getAll() || [];
+const EPS=0.01;
+const eq=(a,b)=>Math.abs(a-b)<EPS;
 const inPmic = (x,y) => x>=0 && x<=660 && y>=370 && y<=800;
 const groups = wires.filter(w => { const L=w.line||[]; for(let i=0;i<L.length;i+=2) if(inPmic(L[i],L[i+1])) return true; return false; })
   .map(w => { const L=w.line||[], s=new Set(); for(let i=0;i<L.length;i+=2) s.add(L[i]+","+L[i+1]); return s; });
@@ -9,7 +11,7 @@ const label = groups.map(s => {
   const names = new Set();
   for (const c of comps) {
     if (c.componentType === "part") continue;
-    if (s.has(c.x + "," + c.y)) names.add((c.componentType === "netflag" ? "" : "") + c.net);
+    if ([...s].some(k=>{const [a,b]=k.split(",").map(Number);return eq(a,c.x)&&eq(b,c.y);})) names.add((c.componentType === "netflag" ? "" : "") + c.net);
   }
   return [...names];
 });
@@ -26,8 +28,8 @@ for (const ref of refs) {
   const ps = await eda.sch_PrimitiveComponent.getAllPinsByPrimitiveId(c.primitiveId) || [];
   for (const q of ps) {
     const key = q.x + "," + q.y;
-    const tag = comps.find(z => z.componentType !== "part" && z.x === q.x && z.y === q.y);
-    const gi = groups.findIndex(s => s.has(key));
+    const tag = comps.find(z => z.componentType !== "part" && eq(z.x,q.x) && eq(z.y,q.y));
+    const gi = groups.findIndex(s => [...s].some(k=>{const [a,b]=k.split(",").map(Number);return eq(a,q.x)&&eq(b,q.y);}));
     let net;
     if (tag) net = tag.net;
     else if (gi >= 0) net = label[gi].length ? label[gi].join("/") : "(無名 G"+gi+")";

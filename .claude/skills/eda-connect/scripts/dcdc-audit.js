@@ -1,4 +1,4 @@
-// CHARGE ブロック (IP2326 段) のピン単位接続監査
+// DCDC ブロック (MP1584 段) のピン単位接続監査
 // ワイヤは同一ネットで 1 オブジェクトに融合されるので、その点集合をネット等価類として使う。
 const comps = await eda.sch_PrimitiveComponent.getAll() || [];
 const wires = await eda.sch_PrimitiveWire.getAll() || [];
@@ -25,7 +25,7 @@ const onSeg = (g, x, y) => {
 const tags = comps.filter(c => c.componentType !== "part" && c.componentType !== "sheet");
 const label = groups.map(g => [...new Set(tags.filter(t => onSeg(g, t.x, t.y)).map(t => t.net))]);
 
-const CHARGE = ["U1","L1","D1","C1","C2","C3","C4","C5","C6","C7","C8","R1","R3","R4","R5","R6"];
+const CHARGE = ["U2","L2","D2","D3","C9","C10","C11","C12","C13","C14","C15","C16","R7","R8","R9","R10"];
 const rows = [];
 for (const ref of CHARGE) {
   const c = comps.find(x => x.designator === ref);
